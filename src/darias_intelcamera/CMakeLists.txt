@@ -7,6 +7,12 @@ project(darias_intelcamera)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
+
+
+set(OpenCV_DIR /home/ias/Documents/yifei/package/build)
+set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
+
 find_package(catkin REQUIRED COMPONENTS
   octomap_msgs
   octomap_ros
@@ -18,7 +24,11 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf2_ros
+  OpenCV
 )
+
+find_package(realsense2 REQUIRED)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -136,14 +146,24 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
+  ${realsense2_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/darias_intelcamera.cpp
 # )
+
+# add_executable(camera_node src/camera_node.cpp)
+# target_link_libraries(camera_node ${realsense2_LIBRARY})
+# target_link_libraries(camera_node ${catkin_LIBRARIES})
+
+# add
+
+add_executable(camera2oct src/camera2oct.cpp)
+target_link_libraries(camera2oct ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

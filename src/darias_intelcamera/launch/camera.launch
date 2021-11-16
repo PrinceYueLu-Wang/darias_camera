@@ -1,0 +1,55 @@
+<launch>
+
+    <group ns="camera">
+        <arg name="serial_no" default="" />
+        <arg name="json_file_path" default="" />
+        <arg name="camera" default="camera" />
+
+        <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+            <arg name="serial_no" value="$(arg serial_no)" />
+            <arg name="json_file_path" value="$(arg json_file_path)" />
+            <arg name="depth_width" value="640" />
+            <arg name="depth_height" value="480" />
+            <arg name="depth_fps" value="30" />
+            <arg name="align_depth" value="true" />
+
+            <arg name="color_width" value="640" />
+            <arg name="color_height" value="480" />
+            <arg name="color_fps" value="30" />
+
+            <arg name="enable_depth" value="true" />
+            <arg name="enable_color" value="true" />
+            <arg name="enable_infra1" value="true" />
+            <arg name="enable_infra2" value="true" />
+            <arg name="enable_fisheye" value="false" />
+            <arg name="enable_gyro" value="false" />
+            <arg name="enable_accel" value="false" />
+            
+            <arg name="filters" value="disparity,temporal,spatial" />
+            <arg name="enable_pointcloud" value="true" />
+            <arg name="enable_sync" value="true" />
+            <arg name="tf_prefix" value="$(arg camera)" />
+            <arg name="initial_reset" value="false" />
+        </include>
+
+        <!-- <node name="configure_temporal_filter" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters camera/temporal">
+            <param name="filter_smooth_delta" value="50" />
+            <param name="filter_smooth_alpha" value="0.1" />
+            <param name="holes_fill" value="3" />
+        </node>  -->
+
+        <!-- <node name="configure_decimation_filter" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters camera/decimation">
+            <param name="filter_filter_magnitude" value="2" />
+        </node>  -->
+
+    </group>
+
+    <node name="tf_darias2camera" pkg="tf" type="static_transform_publisher" args="0.157 -0.0024 0.559 0.265 1.002 0.350 darias camera_link 10" />
+    <!-- <node name="tf_darias2camera" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 camera camera_link 10" /> -->
+    <node name="camera2oct" pkg="darias_intelcamera" type="camera2oct" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find darias_intelcamera)/rviz_config/rviz_test.rviz"/>
+
+
+
+
+</launch>
