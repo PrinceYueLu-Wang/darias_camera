@@ -25,6 +25,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf2_ros
   OpenCV
+  visualization_msgs
 )
 
 find_package(realsense2 REQUIRED)
@@ -164,6 +165,12 @@ include_directories(
 
 add_executable(camera2oct src/camera2oct.cpp)
 target_link_libraries(camera2oct ${catkin_LIBRARIES})
+
+add_executable(sphere_visual src/sphere_visual.cpp)
+target_link_libraries(sphere_visual ${catkin_LIBRARIES})
+
+# add_executable(camera_pointpublisher src/camera_pointpublisher.cpp)
+# target_link_libraries(camera_pointpublisher ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

@@ -15,7 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <std_msgs/Header.h>
 
 namespace darias_intelcamera
 {
@@ -25,25 +24,22 @@ struct maplist_
   typedef maplist_<ContainerAllocator> Type;
 
   maplist_()
-    : header()
-    , center_x()
+    : center_x()
     , center_y()
     , center_z()
-    , sphere_radius(0.0)  {
+    , sphere_radius(0.0)
+    , cube_number(0)  {
     }
   maplist_(const ContainerAllocator& _alloc)
-    : header(_alloc)
-    , center_x(_alloc)
+    : center_x(_alloc)
     , center_y(_alloc)
     , center_z(_alloc)
-    , sphere_radius(0.0)  {
+    , sphere_radius(0.0)
+    , cube_number(0)  {
   (void)_alloc;
     }
 
 
-
-   typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
-  _header_type header;
 
    typedef std::vector<double, typename ContainerAllocator::template rebind<double>::other >  _center_x_type;
   _center_x_type center_x;
@@ -56,6 +52,9 @@ struct maplist_
 
    typedef double _sphere_radius_type;
   _sphere_radius_type sphere_radius;
+
+   typedef int64_t _cube_number_type;
+  _cube_number_type cube_number;
 
 
 
@@ -86,11 +85,11 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::darias_intelcamera::maplist_<ContainerAllocator1> & lhs, const ::darias_intelcamera::maplist_<ContainerAllocator2> & rhs)
 {
-  return lhs.header == rhs.header &&
-    lhs.center_x == rhs.center_x &&
+  return lhs.center_x == rhs.center_x &&
     lhs.center_y == rhs.center_y &&
     lhs.center_z == rhs.center_z &&
-    lhs.sphere_radius == rhs.sphere_radius;
+    lhs.sphere_radius == rhs.sphere_radius &&
+    lhs.cube_number == rhs.cube_number;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -133,12 +132,12 @@ struct IsFixedSize< ::darias_intelcamera::maplist_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct HasHeader< ::darias_intelcamera::maplist_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct HasHeader< ::darias_intelcamera::maplist_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 
@@ -147,12 +146,12 @@ struct MD5Sum< ::darias_intelcamera::maplist_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "226df555f0c0d330fad82df3aec4cf97";
+    return "a13af0fc5407b2a8448e9cb9d1e85a83";
   }
 
   static const char* value(const ::darias_intelcamera::maplist_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x226df555f0c0d330ULL;
-  static const uint64_t static_value2 = 0xfad82df3aec4cf97ULL;
+  static const uint64_t static_value1 = 0xa13af0fc5407b2a8ULL;
+  static const uint64_t static_value2 = 0x448e9cb9d1e85a83ULL;
 };
 
 template<class ContainerAllocator>
@@ -171,31 +170,15 @@ struct Definition< ::darias_intelcamera::maplist_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "Header header\n"
-"\n"
-"float64[] center_x\n"
+    return "float64[] center_x\n"
 "float64[] center_y\n"
 "float64[] center_z\n"
 "\n"
 "float64 sphere_radius\n"
 "\n"
+"int64 cube_number\n"
 "\n"
 "\n"
-"================================================================================\n"
-"MSG: std_msgs/Header\n"
-"# Standard metadata for higher-level stamped data types.\n"
-"# This is generally used to communicate timestamped data \n"
-"# in a particular coordinate frame.\n"
-"# \n"
-"# sequence ID: consecutively increasing ID \n"
-"uint32 seq\n"
-"#Two-integer timestamp that is expressed as:\n"
-"# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n"
-"# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n"
-"# time-handling sugar is provided by the client library\n"
-"time stamp\n"
-"#Frame this data is associated with\n"
-"string frame_id\n"
 ;
   }
 
@@ -214,11 +197,11 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.header);
       stream.next(m.center_x);
       stream.next(m.center_y);
       stream.next(m.center_z);
       stream.next(m.sphere_radius);
+      stream.next(m.cube_number);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -237,9 +220,6 @@ struct Printer< ::darias_intelcamera::maplist_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::darias_intelcamera::maplist_<ContainerAllocator>& v)
   {
-    s << indent << "header: ";
-    s << std::endl;
-    Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
     s << indent << "center_x[]" << std::endl;
     for (size_t i = 0; i < v.center_x.size(); ++i)
     {
@@ -260,6 +240,8 @@ struct Printer< ::darias_intelcamera::maplist_<ContainerAllocator> >
     }
     s << indent << "sphere_radius: ";
     Printer<double>::stream(s, indent + "  ", v.sphere_radius);
+    s << indent << "cube_number: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.cube_number);
   }
 };
 

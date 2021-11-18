@@ -8,6 +8,7 @@
 #include <iostream>
 #include <assert.h>
 #include <vector>
+#include <math.h>
 
 //ros
 #include <ros/ros.h>
@@ -35,96 +36,6 @@
 
 using namespace std;
 
-// int main (int argc, char **argv)
-// {
-//     ros::init (argc, argv, "octomap_publisher");
-
-//     ros::NodeHandle nh("oct_pub");
-
-//     ros::Publisher oct_publiser;
-
-//     pcl::PointCloud<pcl::PointXYZ> cloud;
-
-//     string addressfile = "/home/ias/Desktop/map_test1/data/obsCombination.ply";
-
-//     pcl::io::loadPLYFile<pcl::PointXYZ> ( addressfile, cloud );
-
-//     // ROS::INFO("Loading file");
-
-//     //声明octomap变量
-//     // cout<<"copy data into octomap..."<<endl;
-//     // 创建八叉树对象，参数为分辨率，这里设成了0.05
-
-//     // double octomap_res = stod(argv[0]);
-
-//     octomap::OcTree tree( 0.05 );
-
-//     for (auto p:cloud.points)
-//     {
-//         // 将点云里的点插入到octomap中
-//         tree.updateNode( octomap::point3d(p.x, p.y, p.z), true );
-//     }
-
-//     // 更新octomap
-//     tree.updateInnerOccupancy();
-
-//     // 存储octomap
-
-//     int count = 0;
-
-//     for (auto iter = tree.begin(11), end = tree.end(); iter!= end;++iter){
-//         ++ count;
-//     }
-
-//     ROS_INFO("total cubes : %d",count);
-
-//     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud2(new pcl::PointCloud<pcl::PointXYZ>);
-
-//     cloud2->height = count;
-//     cloud2->width = 1;
-
-//     cloud2->resize(cloud2->height * cloud2->width);
-
-//     size_t i = 0;
-
-//     for(auto iter = tree.begin(11), end = tree.end(); iter != end ;++iter){
-//         cloud2->points[i].x=iter.getX();
-//         cloud2->points[i].y=iter.getY();
-//         cloud2->points[i].z=iter.getZ();
-
-//         ++i;
-
-//     }
-
-//     ros::Publisher pcd2_publisher;
-//     sensor_msgs::PointCloud2 pcdMsg2;
-//     pcl::toROSMsg(*cloud2, pcdMsg2);
-//     pcdMsg2.header.frame_id="map";
-
-//     pcd2_publisher = nh.advertise<sensor_msgs::PointCloud2>("converted_cloud",1);
-
-//     octomap_msgs::Octomap octomapMsg;
-//     octomap_msgs::fullMapToMsg(tree, octomapMsg);
-//     octomapMsg.header.frame_id="map";
-
-//     oct_publiser=nh.advertise<octomap_msgs::Octomap>("oct_pub",1);
-
-//     ros::Rate loop_rate(1);
-//     while (ros::ok())
-//     {
-//         // ROS_INFO_STREAM ("address " << addressfile);
-//         // octomapMsg.header.stamp=stamp
-//         oct_publiser.publish(octomapMsg);
-//         pcd2_publisher.publish(pcdMsg2);
-//         ros::spinOnce();
-//         loop_rate.sleep();
-//     }
-
-//     return 0;
-// }
-
-using namespace std;
-
 class StateProcess
 {
 public:
@@ -133,8 +44,7 @@ public:
 
   StateProcess()
   {
-
-    // tf2 listener
+    //tf listner
     tfListener_ = new tf2_ros::TransformListener(tfBuffer_);
 
     pub_octomap = n_.advertise<octomap_msgs::Octomap>("/camera/octomap", 1);
@@ -149,14 +59,10 @@ public:
   void callback(const sensor_msgs::PointCloud2::ConstPtr &msgs)
   {
 
-    // octomap::OcTree
-    // octomap_msgs::Octomap
-    // darias_intelcamera::maplist
-
-    
-
     pcl::PCLPointCloud2 pointcloud_msg;
+
     // sensor::PointCloud2 msg -> pcl::PointCloud2 msg
+
     pcl_conversions::toPCL(*msgs, pointcloud_msg);
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw(new pcl::PointCloud<pcl::PointXYZ>);
@@ -169,21 +75,6 @@ public:
 
     geometry_msgs::Transform::Ptr tf_camera(new geometry_msgs::Transform);
 
-    // rosrun tf tf_echo image darias
-    // At time 1637091276.466
-    // - Translation: [-0.390, 0.106, -0.417]
-    // - Rotation: in Quaternion [0.489, -0.089, 0.867, 0.031]
-    //         in RPY (radian) [-0.240, -1.023, -3.079]
-    //         in RPY (degree) [-13.731, -58.611, -176.390]
-
-    // rosrun tf tf_echo darias image
-    // At time 1637091240.548
-    // - Translation: [0.157, -0.002, 0.559]
-    // - Rotation: in Quaternion [0.489, -0.089, 0.867, -0.031]
-    //         in RPY (radian) [-0.350, -1.002, -2.877]
-    //         in RPY (degree) [-20.054, -57.410, -164.817]
-
-    //
     // import ! there the transform is camera to darias
     tf_camera->translation.x = 0.158;
     tf_camera->translation.y = 0.012;
@@ -194,19 +85,21 @@ public:
     tf_camera->rotation.z = -0.130;
     tf_camera->rotation.w = 0.252;
 
-  //   transformPointCloud 	(const pcl::PointCloud< PointT > &  	cloud_in,
-	// 	                             pcl::PointCloud< PointT > &  	cloud_out,
-	// 	                             const geometry_msgs::Transform &  	transform 
-	// ) 	
+    //   transformPointCloud 	(const pcl::PointCloud< PointT > &  	cloud_in,
+    // 	                             pcl::PointCloud< PointT > &  	cloud_out,
+    // 	                             const geometry_msgs::Transform &  	transform
+    // )
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl_ros::transformPointCloud(*pointcloud_raw,*pointcloud,*tf_camera);
 
-    ROS_INFO("the header is %s",msgs->header.frame_id.c_str());
+    pcl_ros::transformPointCloud(*pointcloud_raw, *pointcloud, *tf_camera);
 
+    // ROS_INFO("the header is %s",msgs->header.frame_id.c_str());
 
     // range = 0.02 * 2^16 = 0.02 * 256 = 5.12 m
-    octomap::OcTree tree(0.02);
+
+    double octree_res = 0.02;
+    octomap::OcTree tree(octree_res);
 
     for (auto p : pointcloud->points)
     {
@@ -216,12 +109,12 @@ public:
 
     tree.updateInnerOccupancy();
 
-    int tree_node_number = 0;
+    // int tree_node_number = 0;
 
-    for (auto iter = tree.begin(11), end = tree.end(); iter != end; ++iter)
-    {
-      ++tree_node_number;
-    }
+    // for (auto iter = tree.begin(11), end = tree.end(); iter != end; ++iter)
+    // {
+    //   ++tree_node_number;
+    // }
 
     octomap_msgs::Octomap octomapMsg;
     octomap_msgs::fullMapToMsg(tree, octomapMsg);
@@ -229,15 +122,37 @@ public:
 
     pub_octomap.publish(octomapMsg);
 
-}
+    // section to publish points xyz array
 
-private : ros::NodeHandle n_;
-ros::Publisher pub_octomap;
-ros::Publisher pub_octomap_list;
-ros::Publisher pub_cloud;
-ros::Subscriber sub_;
-}
-;
+    int tree_depth = 15;
+
+    darias_intelcamera::maplist pointsMsg;
+    
+    pointsMsg.sphere_radius = octree_res*pow(2.0,16-tree_depth);
+
+    int cube_num = 0;
+    
+    for (auto iter = tree.begin(15), end = tree.end(); iter != end; ++iter)
+    {
+      pointsMsg.center_x.push_back(iter.getX());
+      pointsMsg.center_y.push_back(iter.getY());
+      pointsMsg.center_z.push_back(iter.getZ());
+
+      ++cube_num;
+    }
+
+    pointsMsg.cube_number =cube_num;
+
+    pub_octomap_list.publish(pointsMsg);
+  }
+
+private:
+  ros::NodeHandle n_;
+  ros::Publisher pub_octomap;
+  ros::Publisher pub_octomap_list;
+  ros::Publisher pub_cloud;
+  ros::Subscriber sub_;
+};
 
 int main(int argc, char **argv)
 {
@@ -247,7 +162,17 @@ int main(int argc, char **argv)
   //Create an object of class SubscribeAndPublish that will take care of everything
   StateProcess SAPObject;
 
-  ros::spin();
+  ros::Rate loop_rate = 10;
+
+  while (ros::ok()){
+
+    ros::spinOnce();
+
+    loop_rate.sleep();
+
+  }
+
+  // ros::spin();
 
   return 0;
 }

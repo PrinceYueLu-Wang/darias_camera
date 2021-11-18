@@ -7,12 +7,7 @@
 ;//! \htmlinclude maplist.msg.html
 
 (cl:defclass <maplist> (roslisp-msg-protocol:ros-message)
-  ((header
-    :reader header
-    :initarg :header
-    :type std_msgs-msg:Header
-    :initform (cl:make-instance 'std_msgs-msg:Header))
-   (center_x
+  ((center_x
     :reader center_x
     :initarg :center_x
     :type (cl:vector cl:float)
@@ -31,7 +26,12 @@
     :reader sphere_radius
     :initarg :sphere_radius
     :type cl:float
-    :initform 0.0))
+    :initform 0.0)
+   (cube_number
+    :reader cube_number
+    :initarg :cube_number
+    :type cl:integer
+    :initform 0))
 )
 
 (cl:defclass maplist (<maplist>)
@@ -41,11 +41,6 @@
   (cl:declare (cl:ignorable args))
   (cl:unless (cl:typep m 'maplist)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name darias_intelcamera-msg:<maplist> is deprecated: use darias_intelcamera-msg:maplist instead.")))
-
-(cl:ensure-generic-function 'header-val :lambda-list '(m))
-(cl:defmethod header-val ((m <maplist>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader darias_intelcamera-msg:header-val is deprecated.  Use darias_intelcamera-msg:header instead.")
-  (header m))
 
 (cl:ensure-generic-function 'center_x-val :lambda-list '(m))
 (cl:defmethod center_x-val ((m <maplist>))
@@ -66,9 +61,13 @@
 (cl:defmethod sphere_radius-val ((m <maplist>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader darias_intelcamera-msg:sphere_radius-val is deprecated.  Use darias_intelcamera-msg:sphere_radius instead.")
   (sphere_radius m))
+
+(cl:ensure-generic-function 'cube_number-val :lambda-list '(m))
+(cl:defmethod cube_number-val ((m <maplist>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader darias_intelcamera-msg:cube_number-val is deprecated.  Use darias_intelcamera-msg:cube_number instead.")
+  (cube_number m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <maplist>) ostream)
   "Serializes a message object of type '<maplist>"
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
   (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'center_x))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
@@ -123,10 +122,19 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let* ((signed (cl:slot-value msg 'cube_number)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <maplist>) istream)
   "Deserializes a message object of type '<maplist>"
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'header) istream)
   (cl:let ((__ros_arr_len 0))
     (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
@@ -191,6 +199,16 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'sphere_radius) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'cube_number) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<maplist>)))
@@ -201,30 +219,30 @@
   "darias_intelcamera/maplist")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<maplist>)))
   "Returns md5sum for a message object of type '<maplist>"
-  "226df555f0c0d330fad82df3aec4cf97")
+  "a13af0fc5407b2a8448e9cb9d1e85a83")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'maplist)))
   "Returns md5sum for a message object of type 'maplist"
-  "226df555f0c0d330fad82df3aec4cf97")
+  "a13af0fc5407b2a8448e9cb9d1e85a83")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<maplist>)))
   "Returns full string definition for message of type '<maplist>"
-  (cl:format cl:nil "Header header~%~%float64[] center_x~%float64[] center_y~%float64[] center_z~%~%float64 sphere_radius~%~%~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "float64[] center_x~%float64[] center_y~%float64[] center_z~%~%float64 sphere_radius~%~%int64 cube_number~%~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'maplist)))
   "Returns full string definition for message of type 'maplist"
-  (cl:format cl:nil "Header header~%~%float64[] center_x~%float64[] center_y~%float64[] center_z~%~%float64 sphere_radius~%~%~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "float64[] center_x~%float64[] center_y~%float64[] center_z~%~%float64 sphere_radius~%~%int64 cube_number~%~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <maplist>))
   (cl:+ 0
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'center_x) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'center_y) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'center_z) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 8)))
+     8
      8
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <maplist>))
   "Converts a ROS message object to a list"
   (cl:list 'maplist
-    (cl:cons ':header (header msg))
     (cl:cons ':center_x (center_x msg))
     (cl:cons ':center_y (center_y msg))
     (cl:cons ':center_z (center_z msg))
     (cl:cons ':sphere_radius (sphere_radius msg))
+    (cl:cons ':cube_number (cube_number msg))
 ))
