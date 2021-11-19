@@ -22,10 +22,6 @@ class JoyNode():
     def rosInit(self):
 
         rospy.init_node('joystick_node', anonymous=False)
-        
-        # self.pub_button = rospy.Publisher('joystick/button', String, queue_size=10)
-
-        # self.pub_axis = rospy.Publisher('joystick/axis', String, queue_size=10)
 
         self.pub = rospy.Publisher('joystick/controller', joystick, queue_size=10)
 
@@ -38,13 +34,6 @@ class JoyNode():
         pygame.joystick.init()
 
         # joystick_count = pygame.joystick.get_count()
-
-        # if joystick_count == 0:
-
-        #     return False
-
-        # else:
-        #     return True
 
 
     def getJoyInput(self):
