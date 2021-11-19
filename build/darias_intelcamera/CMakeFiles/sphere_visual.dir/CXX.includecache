@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/ias/Desktop/thesis/code/ros_camera/devel/include/darias_intelcamera/joystick.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/src/sphere_visual.cpp
 iostream
 -
@@ -16,6 +32,8 @@ ros/ros.h
 math.h
 -
 visualization_msgs/Marker.h
+-
+darias_intelcamera/joystick.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/Point.h

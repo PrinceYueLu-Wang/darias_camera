@@ -46,6 +46,11 @@
     :reader button_right
     :initarg :button_right
     :type cl:float
+    :initform 0.0)
+   (button_axisZ
+    :reader button_axisZ
+    :initarg :button_axisZ
+    :type cl:float
     :initform 0.0))
 )
 
@@ -96,6 +101,11 @@
 (cl:defmethod button_right-val ((m <joystick>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader darias_intelcamera-msg:button_right-val is deprecated.  Use darias_intelcamera-msg:button_right instead.")
   (button_right m))
+
+(cl:ensure-generic-function 'button_axisZ-val :lambda-list '(m))
+(cl:defmethod button_axisZ-val ((m <joystick>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader darias_intelcamera-msg:button_axisZ-val is deprecated.  Use darias_intelcamera-msg:button_axisZ instead.")
+  (button_axisZ m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <joystick>) ostream)
   "Serializes a message object of type '<joystick>"
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'rh_axisX))))
@@ -162,6 +172,15 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'button_right))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'button_axisZ))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -253,6 +272,16 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'button_right) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'button_axisZ) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<joystick>)))
@@ -263,18 +292,19 @@
   "darias_intelcamera/joystick")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<joystick>)))
   "Returns md5sum for a message object of type '<joystick>"
-  "71f51f585b7d21a17e5851f8e46a743b")
+  "38359861987deff7a4f782a03f0a4d54")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'joystick)))
   "Returns md5sum for a message object of type 'joystick"
-  "71f51f585b7d21a17e5851f8e46a743b")
+  "38359861987deff7a4f782a03f0a4d54")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<joystick>)))
   "Returns full string definition for message of type '<joystick>"
-  (cl:format cl:nil "float64 rh_axisX~%float64 rh_axisY~%~%float64 lh_axisX~%float64 lh_axisY~%~%float64 button_up~%float64 button_down~%~%float64 button_left~%float64 button_right~%~%"))
+  (cl:format cl:nil "float64 rh_axisX~%float64 rh_axisY~%~%float64 lh_axisX~%float64 lh_axisY~%~%float64 button_up~%float64 button_down~%~%float64 button_left~%float64 button_right~%~%float64 button_axisZ~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'joystick)))
   "Returns full string definition for message of type 'joystick"
-  (cl:format cl:nil "float64 rh_axisX~%float64 rh_axisY~%~%float64 lh_axisX~%float64 lh_axisY~%~%float64 button_up~%float64 button_down~%~%float64 button_left~%float64 button_right~%~%"))
+  (cl:format cl:nil "float64 rh_axisX~%float64 rh_axisY~%~%float64 lh_axisX~%float64 lh_axisY~%~%float64 button_up~%float64 button_down~%~%float64 button_left~%float64 button_right~%~%float64 button_axisZ~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <joystick>))
   (cl:+ 0
+     8
      8
      8
      8
@@ -295,4 +325,5 @@
     (cl:cons ':button_down (button_down msg))
     (cl:cons ':button_left (button_left msg))
     (cl:cons ':button_right (button_right msg))
+    (cl:cons ':button_axisZ (button_axisZ msg))
 ))

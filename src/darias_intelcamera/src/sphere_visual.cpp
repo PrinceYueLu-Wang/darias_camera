@@ -6,8 +6,41 @@
 #include <math.h>
 //msg
 #include <visualization_msgs/Marker.h>
+#include <darias_intelcamera/joystick.h>
 
 using namespace std;
+
+class JoyInput
+{   
+    public:
+    JoyInput()
+    {
+        axis_x=0.0;
+
+        axis_y=0.0;
+
+        axis_z=0.0;
+
+        scale = 0.05;
+    }
+
+    void joyInputUpdate(double x, double y,double z){
+        
+        axis_x = scale * x;
+        axis_y = scale * y;
+        axis_z = scale/5.0 * z;
+
+    }
+
+    double axis_x;
+    double axis_y;
+    double axis_z;
+
+    double scale;
+
+
+
+};
 
 class SphereMarker
 {
@@ -17,6 +50,8 @@ public:
     {
         pub_marker_ = n_.advertise<visualization_msgs::Marker>("test/marker", 10);
 
+        sub_joystick_ = n_.subscribe("/joystick/controller",1, &SphereMarker::joystickMsgCallback, this);
+
         shape_ = visualization_msgs::Marker::SPHERE;
 
         count_=0;
@@ -24,6 +59,13 @@ public:
         markerMsg_ = new visualization_msgs::Marker;
 
         markerMsgInit();
+
+        // joystick init
+
+        joystick_ = new (JoyInput);
+
+        joy_newInput_ = false;
+
     }
 
     void markerMsgInit()
@@ -52,9 +94,9 @@ public:
         markerMsg_->pose.orientation.w = 1.0;
 
         // Set the scale of the marker -- 1x1x1 here means 1m on a side
-        markerMsg_->scale.x = 0.2;
-        markerMsg_->scale.y = 0.2;
-        markerMsg_->scale.z = 0.2;
+        markerMsg_->scale.x = 0.05;
+        markerMsg_->scale.y = 0.05;
+        markerMsg_->scale.z = 0.05;
 
         // Set the color -- be sure to set alpha to something non-zero!
         markerMsg_->color.r = 0.0f;
@@ -65,18 +107,17 @@ public:
         markerMsg_->lifetime = ros::Duration();
     }
 
-    void markerMsgUpdate(){
 
-        if (count_ == 64){
-
-            count_ = 0;
+    void markerMsgUpdate(string mode = "joystick"){
+        
+        if (joy_newInput_){
+            markerMsg_->pose.position.x = markerMsg_->pose.position.x + joystick_->axis_x;
+            markerMsg_->pose.position.y = markerMsg_->pose.position.y + joystick_->axis_y;
+            markerMsg_->pose.position.z = markerMsg_->pose.position.z + joystick_->axis_z;
         }
 
-        markerMsg_->pose.position.x = cos(count_ * M_PI_64);
-        markerMsg_->pose.position.y = sin(count_ * M_PI_64);
 
-        ++count_;
-
+        
     }
 
     void markerPublish(){
@@ -84,15 +125,30 @@ public:
         pub_marker_.publish(*markerMsg_);
     }
 
+    void joystickMsgCallback(const darias_intelcamera::joystick &joystick_msgs)
+    {
+        // here attetion!
+        // joystick axis X == - rviz aixs Y
+        joystick_->joyInputUpdate(-joystick_msgs.lh_axisY,joystick_msgs.lh_axisX,joystick_msgs.button_axisZ);
+
+        joy_newInput_ = true;
+    }
+
     private:
 
     ros::NodeHandle n_;
+
     ros::Publisher pub_marker_;
     ros::Subscriber sub_joystick_;
+
     uint32_t shape_;
     visualization_msgs::Marker* markerMsg_;
     uint16_t count_;
+    
     const double M_PI_64 = M_PI/64.;
+
+    JoyInput* joystick_;
+    bool joy_newInput_;
     
     };
 
@@ -106,11 +162,13 @@ int main(int argc, char **argv)
     ros::Rate loop_rate = 10;
 
     while (ros::ok())
+
+    
     {   
+        ros::spinOnce();
+
         Sphere.markerMsgUpdate();
         Sphere.markerPublish();
-
-        ros::spinOnce();
 
         loop_rate.sleep();
     }

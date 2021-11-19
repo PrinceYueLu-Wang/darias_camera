@@ -31,7 +31,8 @@ struct joystick_
     , button_up(0.0)
     , button_down(0.0)
     , button_left(0.0)
-    , button_right(0.0)  {
+    , button_right(0.0)
+    , button_axisZ(0.0)  {
     }
   joystick_(const ContainerAllocator& _alloc)
     : rh_axisX(0.0)
@@ -41,7 +42,8 @@ struct joystick_
     , button_up(0.0)
     , button_down(0.0)
     , button_left(0.0)
-    , button_right(0.0)  {
+    , button_right(0.0)
+    , button_axisZ(0.0)  {
   (void)_alloc;
     }
 
@@ -70,6 +72,9 @@ struct joystick_
 
    typedef double _button_right_type;
   _button_right_type button_right;
+
+   typedef double _button_axisZ_type;
+  _button_axisZ_type button_axisZ;
 
 
 
@@ -107,7 +112,8 @@ bool operator==(const ::darias_intelcamera::joystick_<ContainerAllocator1> & lhs
     lhs.button_up == rhs.button_up &&
     lhs.button_down == rhs.button_down &&
     lhs.button_left == rhs.button_left &&
-    lhs.button_right == rhs.button_right;
+    lhs.button_right == rhs.button_right &&
+    lhs.button_axisZ == rhs.button_axisZ;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -164,12 +170,12 @@ struct MD5Sum< ::darias_intelcamera::joystick_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "71f51f585b7d21a17e5851f8e46a743b";
+    return "38359861987deff7a4f782a03f0a4d54";
   }
 
   static const char* value(const ::darias_intelcamera::joystick_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x71f51f585b7d21a1ULL;
-  static const uint64_t static_value2 = 0x7e5851f8e46a743bULL;
+  static const uint64_t static_value1 = 0x38359861987deff7ULL;
+  static const uint64_t static_value2 = 0xa4f782a03f0a4d54ULL;
 };
 
 template<class ContainerAllocator>
@@ -199,6 +205,8 @@ struct Definition< ::darias_intelcamera::joystick_<ContainerAllocator> >
 "\n"
 "float64 button_left\n"
 "float64 button_right\n"
+"\n"
+"float64 button_axisZ\n"
 ;
   }
 
@@ -225,6 +233,7 @@ namespace serialization
       stream.next(m.button_down);
       stream.next(m.button_left);
       stream.next(m.button_right);
+      stream.next(m.button_axisZ);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -259,6 +268,8 @@ struct Printer< ::darias_intelcamera::joystick_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.button_left);
     s << indent << "button_right: ";
     Printer<double>::stream(s, indent + "  ", v.button_right);
+    s << indent << "button_axisZ: ";
+    Printer<double>::stream(s, indent + "  ", v.button_axisZ);
   }
 };
 

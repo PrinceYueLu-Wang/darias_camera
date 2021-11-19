@@ -15,4 +15,6 @@
           BUTTON_LEFT
           BUTTON_RIGHT-VAL
           BUTTON_RIGHT
+          BUTTON_AXISZ-VAL
+          BUTTON_AXISZ
 ))

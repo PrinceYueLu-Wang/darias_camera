@@ -26,6 +26,7 @@ class joystick {
       this.button_down = null;
       this.button_left = null;
       this.button_right = null;
+      this.button_axisZ = null;
     }
     else {
       if (initObj.hasOwnProperty('rh_axisX')) {
@@ -76,6 +77,12 @@ class joystick {
       else {
         this.button_right = 0.0;
       }
+      if (initObj.hasOwnProperty('button_axisZ')) {
+        this.button_axisZ = initObj.button_axisZ
+      }
+      else {
+        this.button_axisZ = 0.0;
+      }
     }
   }
 
@@ -97,6 +104,8 @@ class joystick {
     bufferOffset = _serializer.float64(obj.button_left, buffer, bufferOffset);
     // Serialize message field [button_right]
     bufferOffset = _serializer.float64(obj.button_right, buffer, bufferOffset);
+    // Serialize message field [button_axisZ]
+    bufferOffset = _serializer.float64(obj.button_axisZ, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -120,11 +129,13 @@ class joystick {
     data.button_left = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [button_right]
     data.button_right = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [button_axisZ]
+    data.button_axisZ = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 64;
+    return 72;
   }
 
   static datatype() {
@@ -134,7 +145,7 @@ class joystick {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '71f51f585b7d21a17e5851f8e46a743b';
+    return '38359861987deff7a4f782a03f0a4d54';
   }
 
   static messageDefinition() {
@@ -151,6 +162,8 @@ class joystick {
     
     float64 button_left
     float64 button_right
+    
+    float64 button_axisZ
     `;
   }
 
@@ -214,6 +227,13 @@ class joystick {
     }
     else {
       resolved.button_right = 0.0
+    }
+
+    if (msg.button_axisZ !== undefined) {
+      resolved.button_axisZ = msg.button_axisZ;
+    }
+    else {
+      resolved.button_axisZ = 0.0
     }
 
     return resolved;

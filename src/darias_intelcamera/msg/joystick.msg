@@ -9,3 +9,5 @@ float64 button_down
 
 float64 button_left
 float64 button_right
+
+float64 button_axisZ

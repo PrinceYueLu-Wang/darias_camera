@@ -37,7 +37,7 @@ class JoyNode():
 
         pygame.joystick.init()
 
-        joystick_count = pygame.joystick.get_count()
+        # joystick_count = pygame.joystick.get_count()
 
         # if joystick_count == 0:
 
@@ -48,30 +48,64 @@ class JoyNode():
 
 
     def getJoyInput(self):
+        
+        try:
+            self.joystick_count = pygame.joystick.get_count()
 
-        self.joystick_count = pygame.joystick.get_count()
-        self.joystick = pygame.joystick.Joystick(0)
+            self.joystick = pygame.joystick.Joystick(0)
+
+        except pygame.error:
+
+            return -1
+            
         self.joystick.init()
 
         event = pygame.event.get()
 
         if event:
 
-            # buttons = self.joystick.get_numbuttons()
+            self.right_axisX = round(self.joystick.get_axis(2),2)
+            self.right_axisY =  round(-self.joystick.get_axis(3),2)
 
-            # print("Number of buttons: {}".format(buttons))
+            self.left_axisX =  round(self.joystick.get_axis(0),2)
+            self.left_axisY =  round(-self.joystick.get_axis(1),2)
 
-            # for i in range(buttons):
-            #     button = self.joystick.get_button(i)
-            #     if button == 1:
-            #         self.detect_input = True
+            if (abs(self.right_axisX) <= 0.2):
+                self.right_axisX = 0.0
 
-            #         print("Button {} value: {}".format(i, button))
-            #         self.button_name=i
-            #         self.button_value = button
+            if (abs(self.right_axisY) <= 0.2):
+                self.right_axisY = 0.0
 
-            self.right_axisX = self.joystick.get_axis(2)
-            self.right_axisY = -self.joystick.get_axis(3)
+            if (abs(self.left_axisX) <= 0.2):
+                self.left_axisX = 0.0
+
+            if (abs(self.left_axisY) <= 0.2):
+                self.left_axisY = 0.0
+
+
+            button_up = self.joystick.get_button(2)
+
+            button_down = self.joystick.get_button(0)
+
+            # print("button_up : {}".format(button_up))
+            # print("button_down : {}".format(button_down))
+            # print(type(button_up))
+            # print((button_up == 1))
+            # print((button_up == 0))
+            # print((button_up == 0))
+
+            if button_up == 1:
+                self.button_axisZ = 1
+
+            elif button_down == 1:
+                self.button_axisZ = -1
+
+            else:
+                self.button_axisZ =0
+
+
+            print("button_axisZ: {}".format(self.button_axisZ))
+
 
         
             return True
@@ -92,6 +126,12 @@ class JoyNode():
         joy_msg.rh_axisX = self.right_axisX
         joy_msg.rh_axisY = self.right_axisY
 
+        joy_msg.lh_axisX = self.left_axisX
+        joy_msg.lh_axisY = self.left_axisY
+
+        joy_msg.button_axisZ = self.button_axisZ
+        
+
         self.pub.publish(joy_msg)
 
         
@@ -103,7 +143,11 @@ def main():
 
         res = node.getJoyInput()
 
-        if res :
+        if res == -1:
+
+            print("not found joystick")
+
+        elif res == True:
 
             node.pushJoyOutput()
 

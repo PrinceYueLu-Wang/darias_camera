@@ -14,7 +14,7 @@
 
 (defclass darias_intelcamera::joystick
   :super ros::object
-  :slots (_rh_axisX _rh_axisY _lh_axisX _lh_axisY _button_up _button_down _button_left _button_right ))
+  :slots (_rh_axisX _rh_axisY _lh_axisX _lh_axisY _button_up _button_down _button_left _button_right _button_axisZ ))
 
 (defmethod darias_intelcamera::joystick
   (:init
@@ -27,6 +27,7 @@
     ((:button_down __button_down) 0.0)
     ((:button_left __button_left) 0.0)
     ((:button_right __button_right) 0.0)
+    ((:button_axisZ __button_axisZ) 0.0)
     )
    (send-super :init)
    (setq _rh_axisX (float __rh_axisX))
@@ -37,6 +38,7 @@
    (setq _button_down (float __button_down))
    (setq _button_left (float __button_left))
    (setq _button_right (float __button_right))
+   (setq _button_axisZ (float __button_axisZ))
    self)
   (:rh_axisX
    (&optional __rh_axisX)
@@ -62,6 +64,9 @@
   (:button_right
    (&optional __button_right)
    (if __button_right (setq _button_right __button_right)) _button_right)
+  (:button_axisZ
+   (&optional __button_axisZ)
+   (if __button_axisZ (setq _button_axisZ __button_axisZ)) _button_axisZ)
   (:serialization-length
    ()
    (+
@@ -80,6 +85,8 @@
     ;; float64 _button_left
     8
     ;; float64 _button_right
+    8
+    ;; float64 _button_axisZ
     8
     ))
   (:serialize
@@ -102,6 +109,8 @@
        (sys::poke _button_left (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _button_right
        (sys::poke _button_right (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _button_axisZ
+       (sys::poke _button_axisZ (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -122,11 +131,13 @@
      (setq _button_left (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _button_right
      (setq _button_right (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _button_axisZ
+     (setq _button_axisZ (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get darias_intelcamera::joystick :md5sum-) "71f51f585b7d21a17e5851f8e46a743b")
+(setf (get darias_intelcamera::joystick :md5sum-) "38359861987deff7a4f782a03f0a4d54")
 (setf (get darias_intelcamera::joystick :datatype-) "darias_intelcamera/joystick")
 (setf (get darias_intelcamera::joystick :definition-)
       "float64 rh_axisX
@@ -140,10 +151,12 @@ float64 button_down
 
 float64 button_left
 float64 button_right
+
+float64 button_axisZ
 ")
 
 
 
-(provide :darias_intelcamera/joystick "71f51f585b7d21a17e5851f8e46a743b")
+(provide :darias_intelcamera/joystick "38359861987deff7a4f782a03f0a4d54")
 
 
