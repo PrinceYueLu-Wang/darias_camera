@@ -35,6 +35,9 @@ class APF():
                                                data_class=maplist,
                                                callback=self.mapInfoUpdate)
 
+         ## Field Config 
+
+        self.force_scale = 0.05
 
         self.isNewRosMsg = False
 
@@ -66,9 +69,19 @@ class APF():
 
     def forceFromField(self):
 
-        idx_min = np.argmin(self.dist_matrix,axis=1)
-        dist_min = np.min(self.dist_matrix,axis=1)
-    
+        idx_min = np.argmin(self.dist_matrix,axis=1)[0]
+        dist_min = np.min(self.dist_matrix,axis=1)[0]
+
+        if dist_min < 0.1 :
+
+            force_normal = self.obstacles_position[idx_min,:] / dist_min
+
+            force_amplitude = self.force_scale * force_normal
+
+        else:
+
+            force = np.zeros(shape=(3,))
+        
     def forceMsgUpdate(self):
 
         pass
