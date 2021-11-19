@@ -78,17 +78,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -112,6 +101,17 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -241,6 +241,21 @@ darias_intelcamera_generate_messages_cpp: darias_intelcamera/CMakeFiles/darias_i
 darias_intelcamera_generate_messages_cpp/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_cpp.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_cpp.dir/build
 .PHONY : darias_intelcamera_generate_messages_cpp/fast
+
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/rule
+
+# Convenience name for target.
+_darias_intelcamera_generate_messages_check_deps_joystick: darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/rule
+
+.PHONY : _darias_intelcamera_generate_messages_check_deps_joystick
+
+# fast build rule for target.
+_darias_intelcamera_generate_messages_check_deps_joystick/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/build.make darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick.dir/build
+.PHONY : _darias_intelcamera_generate_messages_check_deps_joystick/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_maplist.dir/rule:
@@ -1428,6 +1443,21 @@ actionlib_msgs_generate_messages_py/fast:
 .PHONY : actionlib_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/rule
+
+# Convenience name for target.
+camera_oct2pcd: darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/rule
+
+.PHONY : camera_oct2pcd
+
+# fast build rule for target.
+camera_oct2pcd/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build
+.PHONY : camera_oct2pcd/fast
+
+# Convenience name for target.
 darias_intelcamera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
@@ -1724,6 +1754,33 @@ src/camera2oct.cpp.s:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera2oct.dir/build.make darias_intelcamera/CMakeFiles/camera2oct.dir/src/camera2oct.cpp.s
 .PHONY : src/camera2oct.cpp.s
 
+src/camera_oct2pcd.o: src/camera_oct2pcd.cpp.o
+
+.PHONY : src/camera_oct2pcd.o
+
+# target to build an object file
+src/camera_oct2pcd.cpp.o:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/src/camera_oct2pcd.cpp.o
+.PHONY : src/camera_oct2pcd.cpp.o
+
+src/camera_oct2pcd.i: src/camera_oct2pcd.cpp.i
+
+.PHONY : src/camera_oct2pcd.i
+
+# target to preprocess a source file
+src/camera_oct2pcd.cpp.i:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/src/camera_oct2pcd.cpp.i
+.PHONY : src/camera_oct2pcd.cpp.i
+
+src/camera_oct2pcd.s: src/camera_oct2pcd.cpp.s
+
+.PHONY : src/camera_oct2pcd.s
+
+# target to generate assembly for a file
+src/camera_oct2pcd.cpp.s:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/src/camera_oct2pcd.cpp.s
+.PHONY : src/camera_oct2pcd.cpp.s
+
 src/sphere_visual.o: src/sphere_visual.cpp.o
 
 .PHONY : src/sphere_visual.o
@@ -1759,7 +1816,6 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
 	@echo "... camera2oct"
 	@echo "... install"
 	@echo "... darias_intelcamera_genpy"
@@ -1767,6 +1823,8 @@ help:
 	@echo "... install/local"
 	@echo "... darias_intelcamera_geneus"
 	@echo "... darias_intelcamera_generate_messages_cpp"
+	@echo "... rebuild_cache"
+	@echo "... _darias_intelcamera_generate_messages_check_deps_joystick"
 	@echo "... _darias_intelcamera_generate_messages_check_deps_maplist"
 	@echo "... darias_intelcamera_generate_messages"
 	@echo "... visualization_msgs_generate_messages_nodejs"
@@ -1847,6 +1905,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... actionlib_msgs_generate_messages_py"
+	@echo "... camera_oct2pcd"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_eus"
@@ -1869,6 +1928,9 @@ help:
 	@echo "... src/camera2oct.o"
 	@echo "... src/camera2oct.i"
 	@echo "... src/camera2oct.s"
+	@echo "... src/camera_oct2pcd.o"
+	@echo "... src/camera_oct2pcd.i"
+	@echo "... src/camera_oct2pcd.s"
 	@echo "... src/sphere_visual.o"
 	@echo "... src/sphere_visual.i"
 	@echo "... src/sphere_visual.s"

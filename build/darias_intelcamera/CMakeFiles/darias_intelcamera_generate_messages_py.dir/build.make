@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/ias/Desktop/thesis/code/ros_camera/build
 include darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py.dir/progress.make
 
 darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_maplist.py
+darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_joystick.py
 darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py
 
 
@@ -62,13 +63,20 @@ darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py: /home/ias
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ias/Desktop/thesis/code/ros_camera/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG darias_intelcamera/maplist"
 	cd /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/maplist.msg -Idarias_intelcamera:/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p darias_intelcamera -o /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg
 
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_joystick.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_joystick.py: /home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/joystick.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ias/Desktop/thesis/code/ros_camera/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG darias_intelcamera/joystick"
+	cd /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/joystick.msg -Idarias_intelcamera:/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p darias_intelcamera -o /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg
+
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_maplist.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ias/Desktop/thesis/code/ros_camera/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for darias_intelcamera"
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_joystick.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ias/Desktop/thesis/code/ros_camera/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for darias_intelcamera"
 	cd /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg --initpy
 
 darias_intelcamera_generate_messages_py: darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py
 darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_maplist.py
+darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/_joystick.py
 darias_intelcamera_generate_messages_py: /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py
 darias_intelcamera_generate_messages_py: darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_py.dir/build.make
 

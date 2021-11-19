@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/ias/Desktop/thesis/code/ros_camera/devel/include/darias_intelcamera/joystick.h"
   "/home/ias/Desktop/thesis/code/ros_camera/devel/include/darias_intelcamera/maplist.h"
   "CMakeFiles/darias_intelcamera_generate_messages_cpp"
 )

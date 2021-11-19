@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+
 import pygame
 import rospy
 from std_msgs.msg import Float32,String
+
+from darias_intelcamera.msg import joystick
+
 
 class JoyNode():
 
@@ -11,11 +16,19 @@ class JoyNode():
 
         self.joyInit()
 
+        self.right_axisX = 0.0
+        self.right_axisY = 0.0
+
     def rosInit(self):
 
-        rospy.init_node('talker', anonymous=True)
+        rospy.init_node('joystick_node', anonymous=False)
         
-        self.pub = rospy.Publisher('chatter', String, queue_size=10)
+        # self.pub_button = rospy.Publisher('joystick/button', String, queue_size=10)
+
+        # self.pub_axis = rospy.Publisher('joystick/axis', String, queue_size=10)
+
+        self.pub = rospy.Publisher('joystick/controller', joystick, queue_size=10)
+
         self.rate = rospy.Rate(10)
 
     def joyInit(self):
@@ -44,18 +57,23 @@ class JoyNode():
 
         if event:
 
-            buttons = self.joystick.get_numbuttons()
+            # buttons = self.joystick.get_numbuttons()
+
             # print("Number of buttons: {}".format(buttons))
 
-            for i in range(buttons):
-                button = self.joystick.get_button(i)
-                if button == 1:
-                    self.detect_input = True
+            # for i in range(buttons):
+            #     button = self.joystick.get_button(i)
+            #     if button == 1:
+            #         self.detect_input = True
 
-                    print("Button {} value: {}".format(i, button))
-                    self.button_name=i
-                    self.button_value = button
+            #         print("Button {} value: {}".format(i, button))
+            #         self.button_name=i
+            #         self.button_value = button
 
+            self.right_axisX = self.joystick.get_axis(2)
+            self.right_axisY = -self.joystick.get_axis(3)
+
+        
             return True
 
         else:
@@ -69,7 +87,10 @@ class JoyNode():
 
     def pushJoyOutput(self):
 
-        joy_msg = "Button {} value: {}".format(self.button_name, self.button_value)
+        joy_msg = joystick()
+
+        joy_msg.rh_axisX = self.right_axisX
+        joy_msg.rh_axisY = self.right_axisY
 
         self.pub.publish(joy_msg)
 
@@ -88,7 +109,7 @@ def main():
 
         else:
 
-            print("error2")
+            print("no joystick input")
 
         node.rate.sleep()
 

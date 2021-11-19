@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/maplist.msg"
+messages_str = "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/maplist.msg;/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/joystick.msg"
 services_str = ""
 pkg_name = "darias_intelcamera"
 dependencies_str = "std_msgs;geometry_msgs"

@@ -75,6 +75,7 @@ find_package(realsense2 REQUIRED)
 add_message_files(
   FILES
   maplist.msg
+  joystick.msg
 
 )
 
@@ -169,6 +170,9 @@ target_link_libraries(camera2oct ${catkin_LIBRARIES})
 add_executable(sphere_visual src/sphere_visual.cpp)
 target_link_libraries(sphere_visual ${catkin_LIBRARIES})
 
+add_executable(camera_oct2pcd src/camera_oct2pcd.cpp)
+target_link_libraries(camera_oct2pcd ${catkin_LIBRARIES})
+
 # add_executable(camera_pointpublisher src/camera_pointpublisher.cpp)
 # target_link_libraries(camera_pointpublisher ${catkin_LIBRARIES})
 
@@ -210,6 +214,11 @@ target_link_libraries(sphere_visual ${catkin_LIBRARIES})
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+
+
+catkin_install_python(PROGRAMS scripts/joystick.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html

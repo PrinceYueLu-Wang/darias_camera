@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/ias/Desktop/thesis/code/ros_camera/devel/share/common-lisp/ros/darias_intelcamera/msg/joystick.lisp"
   "/home/ias/Desktop/thesis/code/ros_camera/devel/share/common-lisp/ros/darias_intelcamera/msg/maplist.lisp"
   "CMakeFiles/darias_intelcamera_generate_messages_lisp"
 )

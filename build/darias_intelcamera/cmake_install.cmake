@@ -38,7 +38,10 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/darias_intelcamera/msg" TYPE FILE FILES "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/maplist.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/darias_intelcamera/msg" TYPE FILE FILES
+    "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/maplist.msg"
+    "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/msg/joystick.msg"
+    )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -86,5 +89,9 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/darias_intelcamera" TYPE FILE FILES "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/package.xml")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/darias_intelcamera" TYPE PROGRAM FILES "/home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/catkin_generated/installspace/joystick.py")
 endif()
 
