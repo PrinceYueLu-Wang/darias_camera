@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
+
+# Convenience name for target.
+camera_filtered_pcd: darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
+
+.PHONY : camera_filtered_pcd
+
+# fast build rule for target.
+camera_filtered_pcd/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build
+.PHONY : camera_filtered_pcd/fast
+
+# Convenience name for target.
 darias_intelcamera/CMakeFiles/camera2oct.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/camera2oct.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/camera2oct.dir/rule
@@ -1754,6 +1769,33 @@ src/camera2oct.cpp.s:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera2oct.dir/build.make darias_intelcamera/CMakeFiles/camera2oct.dir/src/camera2oct.cpp.s
 .PHONY : src/camera2oct.cpp.s
 
+src/camera_filtered_pcd.o: src/camera_filtered_pcd.cpp.o
+
+.PHONY : src/camera_filtered_pcd.o
+
+# target to build an object file
+src/camera_filtered_pcd.cpp.o:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.o
+.PHONY : src/camera_filtered_pcd.cpp.o
+
+src/camera_filtered_pcd.i: src/camera_filtered_pcd.cpp.i
+
+.PHONY : src/camera_filtered_pcd.i
+
+# target to preprocess a source file
+src/camera_filtered_pcd.cpp.i:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.i
+.PHONY : src/camera_filtered_pcd.cpp.i
+
+src/camera_filtered_pcd.s: src/camera_filtered_pcd.cpp.s
+
+.PHONY : src/camera_filtered_pcd.s
+
+# target to generate assembly for a file
+src/camera_filtered_pcd.cpp.s:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.s
+.PHONY : src/camera_filtered_pcd.cpp.s
+
 src/camera_oct2pcd.o: src/camera_oct2pcd.cpp.o
 
 .PHONY : src/camera_oct2pcd.o
@@ -1816,6 +1858,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... camera_filtered_pcd"
 	@echo "... camera2oct"
 	@echo "... install"
 	@echo "... darias_intelcamera_genpy"
@@ -1928,6 +1971,9 @@ help:
 	@echo "... src/camera2oct.o"
 	@echo "... src/camera2oct.i"
 	@echo "... src/camera2oct.s"
+	@echo "... src/camera_filtered_pcd.o"
+	@echo "... src/camera_filtered_pcd.i"
+	@echo "... src/camera_filtered_pcd.s"
 	@echo "... src/camera_oct2pcd.o"
 	@echo "... src/camera_oct2pcd.i"
 	@echo "... src/camera_oct2pcd.s"

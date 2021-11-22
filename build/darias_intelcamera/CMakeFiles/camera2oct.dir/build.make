@@ -104,8 +104,6 @@ camera2oct_EXTERNAL_OBJECTS =
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libpcl_common.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libpcl_octree.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libpcl_io.so
-/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_regex.so
@@ -206,6 +204,10 @@ camera2oct_EXTERNAL_OBJECTS =
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /opt/ros/noetic/lib/libpinocchio.so
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_serialization.so
+/home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /usr/lib/x86_64-linux-gnu/libboost_system.so
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /home/ias/Documents/yifei/package/build/lib/libopencv_dnn.so.4.5.2
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /home/ias/Documents/yifei/package/build/lib/libopencv_imgcodecs.so.4.5.2
 /home/ias/Desktop/thesis/code/ros_camera/devel/lib/darias_intelcamera/camera2oct: /home/ias/Documents/yifei/package/build/lib/libopencv_calib3d.so.4.5.2

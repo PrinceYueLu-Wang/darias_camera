@@ -10,5 +10,8 @@
         "/home/ias/Documents/yifei/darias/ias_ros/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "python.pythonPath": "/home/ias/anaconda3/envs/lightpy36/bin/python"
+    "python.pythonPath": "/home/ias/anaconda3/envs/lightpy36/bin/python",
+    "files.associations": {
+        "future": "cpp"
+    }
 }

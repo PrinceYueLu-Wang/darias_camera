@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named camera_filtered_pcd
+
+# Build rule for target.
+camera_filtered_pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 camera_filtered_pcd
+.PHONY : camera_filtered_pcd
+
+# fast build rule for target.
+camera_filtered_pcd/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build
+.PHONY : camera_filtered_pcd/fast
+
+#=============================================================================
 # Target rules for targets named camera2oct
 
 # Build rule for target.
@@ -1658,6 +1671,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... camera_filtered_pcd"
 	@echo "... camera2oct"
 	@echo "... darias_intelcamera_genpy"
 	@echo "... darias_intelcamera_genlisp"

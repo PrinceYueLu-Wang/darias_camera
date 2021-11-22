@@ -15,4 +15,3 @@ subts = x_obs[:,None,:] - x_rob
 
 
 d = ((x_rob[None,...] - x_obs[None,...])**2).sum(-1)
-print(d.shape)

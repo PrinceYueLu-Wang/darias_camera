@@ -12,20 +12,28 @@ project(darias_intelcamera)
 
 set(OpenCV_DIR /home/ias/Documents/yifei/package/build)
 set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
+set(pinocchio_DIR /opt/ros/noetic/share/cmake/pinocchio)
+
+
 
 find_package(catkin REQUIRED COMPONENTS
   octomap_msgs
   octomap_ros
+
   pcl_conversions
   pcl_ros
   pcl_msgs
+
   roscpp
   rospy
+
   sensor_msgs
   std_msgs
   tf2_ros
   OpenCV
   visualization_msgs
+
+  pinocchio
 )
 
 find_package(realsense2 REQUIRED)
@@ -172,6 +180,9 @@ target_link_libraries(sphere_visual ${catkin_LIBRARIES})
 
 add_executable(camera_oct2pcd src/camera_oct2pcd.cpp)
 target_link_libraries(camera_oct2pcd ${catkin_LIBRARIES})
+
+add_executable(camera_filtered_pcd src/camera_filtered_pcd.cpp)
+target_link_libraries(camera_filtered_pcd ${catkin_LIBRARIES})
 
 # add_executable(camera_pointpublisher src/camera_pointpublisher.cpp)
 # target_link_libraries(camera_pointpublisher ${catkin_LIBRARIES})

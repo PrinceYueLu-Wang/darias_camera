@@ -69,6 +69,8 @@
   <build_depend>OpenCV</build_depend>
   <build_depend>realsense2</build_depend>
 
+  <build_depend>pinocchio</build_depend>
+
 
   <!--  -->
 
@@ -92,6 +94,10 @@
   <build_export_depend>OpenCV</build_export_depend>
   <build_export_depend>realsense2</build_export_depend>
 
+  <build_export_depend>pinocchio</build_export_depend>
+
+
+
   <!--  -->
 
 
@@ -113,6 +119,9 @@
 
   <exec_depend>OpenCV</exec_depend>
   <exec_depend>realsense2</exec_depend>
+
+  <exec_depend>pinocchio</exec_depend>
+
 
   <!-- self defined msg required -->
 
