@@ -401,6 +401,12 @@ class_loader_DIR:PATH=/opt/ros/noetic/share/class_loader/cmake
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
 //Value Computed by CMake
+darias_description_BINARY_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/build/darias_description
+
+//Value Computed by CMake
+darias_description_SOURCE_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/src/darias_description
+
+//Value Computed by CMake
 darias_intelcamera_BINARY_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera
 
 //Value Computed by CMake
