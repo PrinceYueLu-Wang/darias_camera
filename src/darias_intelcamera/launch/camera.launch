@@ -47,7 +47,7 @@
     <node name="tf_darias2camera" pkg="tf" type="static_transform_publisher" args="0.157 -0.0024 0.559 0.265 1.002 0.350 darias camera_link 10" />
     <!-- <node name="tf_darias2camera" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 camera camera_link 10" /> -->
     <node name="camera2oct" pkg="darias_intelcamera" type="camera2oct" />
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find darias_intelcamera)/rviz_config/rviz_test.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find darias_intelcamera)/rviz_config/rviz_test.rviz"/> -->
 
 
 
