@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
+darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
 
 # Convenience name for target.
-camera_filtered_pcd: darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/rule
+cam_mesh2pcd: darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
 
-.PHONY : camera_filtered_pcd
+.PHONY : cam_mesh2pcd
 
 # fast build rule for target.
-camera_filtered_pcd/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build
-.PHONY : camera_filtered_pcd/fast
+cam_mesh2pcd/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build
+.PHONY : cam_mesh2pcd/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/camera2oct.dir/rule:
@@ -811,21 +811,6 @@ std_msgs_generate_messages_nodejs: darias_intelcamera/CMakeFiles/std_msgs_genera
 std_msgs_generate_messages_nodejs/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/sphere_visual.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/sphere_visual.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/sphere_visual.dir/rule
-
-# Convenience name for target.
-sphere_visual: darias_intelcamera/CMakeFiles/sphere_visual.dir/rule
-
-.PHONY : sphere_visual
-
-# fast build rule for target.
-sphere_visual/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/sphere_visual.dir/build.make darias_intelcamera/CMakeFiles/sphere_visual.dir/build
-.PHONY : sphere_visual/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/darias_intelcamera_gennodejs.dir/rule:
@@ -1742,6 +1727,33 @@ dynamic_reconfigure_generate_messages_lisp/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make darias_intelcamera/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_lisp/fast
 
+src/cam_mesh2pcd.o: src/cam_mesh2pcd.cpp.o
+
+.PHONY : src/cam_mesh2pcd.o
+
+# target to build an object file
+src/cam_mesh2pcd.cpp.o:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.o
+.PHONY : src/cam_mesh2pcd.cpp.o
+
+src/cam_mesh2pcd.i: src/cam_mesh2pcd.cpp.i
+
+.PHONY : src/cam_mesh2pcd.i
+
+# target to preprocess a source file
+src/cam_mesh2pcd.cpp.i:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.i
+.PHONY : src/cam_mesh2pcd.cpp.i
+
+src/cam_mesh2pcd.s: src/cam_mesh2pcd.cpp.s
+
+.PHONY : src/cam_mesh2pcd.s
+
+# target to generate assembly for a file
+src/cam_mesh2pcd.cpp.s:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.s
+.PHONY : src/cam_mesh2pcd.cpp.s
+
 src/camera2oct.o: src/camera2oct.cpp.o
 
 .PHONY : src/camera2oct.o
@@ -1768,33 +1780,6 @@ src/camera2oct.s: src/camera2oct.cpp.s
 src/camera2oct.cpp.s:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera2oct.dir/build.make darias_intelcamera/CMakeFiles/camera2oct.dir/src/camera2oct.cpp.s
 .PHONY : src/camera2oct.cpp.s
-
-src/camera_filtered_pcd.o: src/camera_filtered_pcd.cpp.o
-
-.PHONY : src/camera_filtered_pcd.o
-
-# target to build an object file
-src/camera_filtered_pcd.cpp.o:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.o
-.PHONY : src/camera_filtered_pcd.cpp.o
-
-src/camera_filtered_pcd.i: src/camera_filtered_pcd.cpp.i
-
-.PHONY : src/camera_filtered_pcd.i
-
-# target to preprocess a source file
-src/camera_filtered_pcd.cpp.i:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.i
-.PHONY : src/camera_filtered_pcd.cpp.i
-
-src/camera_filtered_pcd.s: src/camera_filtered_pcd.cpp.s
-
-.PHONY : src/camera_filtered_pcd.s
-
-# target to generate assembly for a file
-src/camera_filtered_pcd.cpp.s:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/src/camera_filtered_pcd.cpp.s
-.PHONY : src/camera_filtered_pcd.cpp.s
 
 src/camera_oct2pcd.o: src/camera_oct2pcd.cpp.o
 
@@ -1823,33 +1808,6 @@ src/camera_oct2pcd.cpp.s:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_oct2pcd.dir/src/camera_oct2pcd.cpp.s
 .PHONY : src/camera_oct2pcd.cpp.s
 
-src/sphere_visual.o: src/sphere_visual.cpp.o
-
-.PHONY : src/sphere_visual.o
-
-# target to build an object file
-src/sphere_visual.cpp.o:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/sphere_visual.dir/build.make darias_intelcamera/CMakeFiles/sphere_visual.dir/src/sphere_visual.cpp.o
-.PHONY : src/sphere_visual.cpp.o
-
-src/sphere_visual.i: src/sphere_visual.cpp.i
-
-.PHONY : src/sphere_visual.i
-
-# target to preprocess a source file
-src/sphere_visual.cpp.i:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/sphere_visual.dir/build.make darias_intelcamera/CMakeFiles/sphere_visual.dir/src/sphere_visual.cpp.i
-.PHONY : src/sphere_visual.cpp.i
-
-src/sphere_visual.s: src/sphere_visual.cpp.s
-
-.PHONY : src/sphere_visual.s
-
-# target to generate assembly for a file
-src/sphere_visual.cpp.s:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/sphere_visual.dir/build.make darias_intelcamera/CMakeFiles/sphere_visual.dir/src/sphere_visual.cpp.s
-.PHONY : src/sphere_visual.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1858,7 +1816,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... camera_filtered_pcd"
+	@echo "... cam_mesh2pcd"
 	@echo "... camera2oct"
 	@echo "... install"
 	@echo "... darias_intelcamera_genpy"
@@ -1904,7 +1862,6 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... sphere_visual"
 	@echo "... darias_intelcamera_gennodejs"
 	@echo "... octomap_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
@@ -1968,18 +1925,15 @@ help:
 	@echo "... pcl_msgs_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
+	@echo "... src/cam_mesh2pcd.o"
+	@echo "... src/cam_mesh2pcd.i"
+	@echo "... src/cam_mesh2pcd.s"
 	@echo "... src/camera2oct.o"
 	@echo "... src/camera2oct.i"
 	@echo "... src/camera2oct.s"
-	@echo "... src/camera_filtered_pcd.o"
-	@echo "... src/camera_filtered_pcd.i"
-	@echo "... src/camera_filtered_pcd.s"
 	@echo "... src/camera_oct2pcd.o"
 	@echo "... src/camera_oct2pcd.i"
 	@echo "... src/camera_oct2pcd.s"
-	@echo "... src/sphere_visual.o"
-	@echo "... src/sphere_visual.i"
-	@echo "... src/sphere_visual.s"
 .PHONY : help
 
 

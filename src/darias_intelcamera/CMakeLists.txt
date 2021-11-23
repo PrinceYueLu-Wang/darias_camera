@@ -175,14 +175,17 @@ include_directories(
 add_executable(camera2oct src/camera2oct.cpp)
 target_link_libraries(camera2oct ${catkin_LIBRARIES})
 
-add_executable(sphere_visual src/sphere_visual.cpp)
-target_link_libraries(sphere_visual ${catkin_LIBRARIES})
+# add_executable(sphere_visual src/sphere_visual.cpp)
+# target_link_libraries(sphere_visual ${catkin_LIBRARIES})
 
 add_executable(camera_oct2pcd src/camera_oct2pcd.cpp)
 target_link_libraries(camera_oct2pcd ${catkin_LIBRARIES})
 
-add_executable(camera_filtered_pcd src/camera_filtered_pcd.cpp)
-target_link_libraries(camera_filtered_pcd ${catkin_LIBRARIES})
+add_executable(cam_mesh2pcd src/cam_mesh2pcd.cpp)
+target_link_libraries(cam_mesh2pcd ${catkin_LIBRARIES})
+
+# add_executable(camera_filtered_pcd src/camera_filtered_pcd.cpp)
+# target_link_libraries(camera_filtered_pcd ${catkin_LIBRARIES})
 
 # add_executable(camera_pointpublisher src/camera_pointpublisher.cpp)
 # target_link_libraries(camera_pointpublisher ${catkin_LIBRARIES})

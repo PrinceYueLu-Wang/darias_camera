@@ -285,17 +285,17 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named camera_filtered_pcd
+# Target rules for targets named cam_mesh2pcd
 
 # Build rule for target.
-camera_filtered_pcd: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 camera_filtered_pcd
-.PHONY : camera_filtered_pcd
+cam_mesh2pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cam_mesh2pcd
+.PHONY : cam_mesh2pcd
 
 # fast build rule for target.
-camera_filtered_pcd/fast:
-	$(MAKE) -f darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build.make darias_intelcamera/CMakeFiles/camera_filtered_pcd.dir/build
-.PHONY : camera_filtered_pcd/fast
+cam_mesh2pcd/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build
+.PHONY : cam_mesh2pcd/fast
 
 #=============================================================================
 # Target rules for targets named camera2oct
@@ -842,19 +842,6 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 std_msgs_generate_messages_nodejs/fast:
 	$(MAKE) -f darias_intelcamera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named sphere_visual
-
-# Build rule for target.
-sphere_visual: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sphere_visual
-.PHONY : sphere_visual
-
-# fast build rule for target.
-sphere_visual/fast:
-	$(MAKE) -f darias_intelcamera/CMakeFiles/sphere_visual.dir/build.make darias_intelcamera/CMakeFiles/sphere_visual.dir/build
-.PHONY : sphere_visual/fast
 
 #=============================================================================
 # Target rules for targets named darias_intelcamera_gennodejs
@@ -1671,7 +1658,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... camera_filtered_pcd"
+	@echo "... cam_mesh2pcd"
 	@echo "... camera2oct"
 	@echo "... darias_intelcamera_genpy"
 	@echo "... darias_intelcamera_genlisp"
@@ -1714,7 +1701,6 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... sphere_visual"
 	@echo "... darias_intelcamera_gennodejs"
 	@echo "... octomap_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
