@@ -166,35 +166,20 @@ include_directories(
 #   src/${PROJECT_NAME}/darias_intelcamera.cpp
 # )
 
-# add_executable(camera_node src/camera_node.cpp)
-# target_link_libraries(camera_node ${realsense2_LIBRARY})
-# target_link_libraries(camera_node ${catkin_LIBRARIES})
 
-# add
-
-add_executable(camera2oct src/camera2oct.cpp)
-target_link_libraries(camera2oct ${catkin_LIBRARIES})
-
-# add_executable(sphere_visual src/sphere_visual.cpp)
-# target_link_libraries(sphere_visual ${catkin_LIBRARIES})
-
-add_executable(camera_oct2pcd src/camera_oct2pcd.cpp)
-target_link_libraries(camera_oct2pcd ${catkin_LIBRARIES})
 
 add_executable(cam_mesh2pcd src/cam_mesh2pcd.cpp)
 target_link_libraries(cam_mesh2pcd ${catkin_LIBRARIES})
-# jointStates_publisher
+
 add_executable(jointStates_publisher src/jointStates_publisher.cpp)
 target_link_libraries(jointStates_publisher ${catkin_LIBRARIES})
 
-# add_executable(abc src/abc.cpp)
-# target_link_libraries(abc ${catkin_LIBRARIES})
+add_executable(cam_img2pcdtree src/cam_img2pcdtree.cpp)
+target_link_libraries(cam_img2pcdtree ${catkin_LIBRARIES})
+add_dependencies(cam_img2pcdtree ${catkin_EXPORTED_TARGETS})
 
-# add_executable(camera_filtered_pcd src/camera_filtered_pcd.cpp)
-# target_link_libraries(camera_filtered_pcd ${catkin_LIBRARIES})
 
-# add_executable(camera_pointpublisher src/camera_pointpublisher.cpp)
-# target_link_libraries(camera_pointpublisher ${catkin_LIBRARIES})
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

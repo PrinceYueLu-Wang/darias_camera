@@ -5,6 +5,6 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("darias_description")
 subdirs("cam_cfg")
 subdirs("darias_intelcamera")
-subdirs("tf_publisher_gui")

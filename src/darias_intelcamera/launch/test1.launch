@@ -59,6 +59,9 @@
 
     </group>
 
+    <node name="cam_mesh2pcd" pkg="darias_intelcamera" type="cam_mesh2pcd" />
+    <node name="cam_img2pcdtree" pkg="darias_intelcamera" type="cam_img2pcdtree" />
+
     
 
 </launch>

@@ -131,9 +131,9 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/ias/Desktop/thesis/code/ros_camera/build/gtest/cmake_install.cmake")
+  include("/home/ias/Desktop/thesis/code/ros_camera/build/darias_description/cmake_install.cmake")
   include("/home/ias/Desktop/thesis/code/ros_camera/build/cam_cfg/cmake_install.cmake")
   include("/home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/cmake_install.cmake")
-  include("/home/ias/Desktop/thesis/code/ros_camera/build/tf_publisher_gui/cmake_install.cmake")
 
 endif()
 

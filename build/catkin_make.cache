@@ -1,2 +1,2 @@
-cam_cfg:darias_intelcamera:tf_publisher_gui
+cam_cfg:darias_description:darias_intelcamera
 -DCATKIN_DEVEL_PREFIX=/home/ias/Desktop/thesis/code/ros_camera/devel -DCMAKE_INSTALL_PREFIX=/home/ias/Desktop/thesis/code/ros_camera/install -G Unix Makefiles

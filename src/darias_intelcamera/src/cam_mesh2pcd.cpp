@@ -23,6 +23,7 @@
 //ros msg
 #include <sensor_msgs/PointCloud2.h>
 #include <geometry_msgs/Transform.h>
+#include <geometry_msgs/Quaternion.h>
 
 //octomap
 #include <octomap/octomap.h>
@@ -31,6 +32,10 @@
 
 //tf2
 #include <tf2_ros/transform_listener.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+
+
 
 //msgs
 // #include "eigen.h"
@@ -43,7 +48,7 @@ class MeshPCDPub
 public:
     MeshPCDPub()
     {
-        pub_ = n_.advertise<sensor_msgs::PointCloud2>("/cam/robotarm", 1);
+        pub_ = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/mesh_R_5_link", 1);
 
 
         pcd_arm_ = new pcl::PointCloud<pcl::PointXYZ>();
@@ -74,16 +79,66 @@ public:
         {
             geometry_msgs::TransformStamped tf_r6link;
 
-            tf_r6link = tfBuffer_.lookupTransform("world", "R_6_link", ros::Time(0), ros::Duration(3.0));
+            tf_r6link = tfBuffer_.lookupTransform("world", "R_5_link", ros::Time(0), ros::Duration(3.0));
 
             // tf to eigen
-            Eigen::Matrix4f link2world;
+            Eigen::Matrix4f tf_in;
 
-            pcl_ros::transformAsMatrix(tf_r6link.transform, link2world);
+            pcl_ros::transformAsMatrix(tf_r6link.transform, tf_in);
+
+            Eigen::Matrix4f tf_trans1;
+
+            Eigen::Matrix4f tf_trans2;
+
+            Eigen::Matrix4f tf_out;
+
+            tf_trans1.setZero();
+            tf_trans2.setZero();
+            
+            for (int i = 0; i<4;++i){
+                tf_trans1(i,i)=1.0;
+            }
+            
+            tf_trans1(2,3) = 0.0;
+
+            for (int i = 0; i<4;++i){
+                tf_trans2(i,i)=1.0;
+            }
+
+            tf_trans2(0,0) = -1.0;
+            tf_trans2(1,1) = -1.0;
+            
+
+            tf_out = tf_in * tf_trans1 * tf_trans2;
+            
+
+
+
+            // geometry_msgs::Quaternion q_raw = tf_r6link.transform.rotation;
+
+
+            // tf2::Quaternion q_orig, q_rot, q_new;
+
+            // tf2::convert(q_raw , q_orig);
+
+            // q_rot.setRPY(0.0, 0.0, 3.14159);
+
+            // q_new = q_orig*q_rot; 
+
+            // q_new.normalize();
+
+            // geometry_msgs::Quaternion q_new_msg;
+
+            // tf2::convert(q_new , q_new_msg);
+
+            // tf_r6link.transform.rotation = q_new_msg;
+            // tf_r6link.transform.translation.z = tf_r6link.transform.translation.z+0.124;
+
+            // pcl_ros::transformAsMatrix(tf_r6link.transform, link2world);
 
             // pcd to world frame
 
-            pcl::transformPointCloud(*pcd_arm_, *pcd_arm_world_, link2world);
+            pcl::transformPointCloud(*pcd_arm_, *pcd_arm_world_, tf_out);
 
             // pcd to pcdMsgs
 
