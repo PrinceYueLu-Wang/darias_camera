@@ -1,0 +1,12 @@
+\subsubsection usage Usage
+\verbatim
+<node name="cam_cfg" pkg="cam_cfg" type="cam_cfg">
+  <param name="x" type="double" value="0.157" />
+  <param name="y" type="double" value="-0.024" />
+  <param name="z" type="double" value="0.56" />
+  <param name="R" type="double" value="0.35" />
+  <param name="P" type="double" value="1.002" />
+  <param name="Y" type="double" value="0.265" />
+</node>
+\endverbatim
+

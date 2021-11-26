@@ -1,4 +1,5 @@
 # Hashes of file build rules.
+6cc1259367fea288f53e8ea45e4ecceb /home/ias/Desktop/thesis/code/ros_camera/devel/include/cam_cfg/tf_adjustConfig.h
 87e7afc619a146987bf727f375e0a599 /home/ias/Desktop/thesis/code/ros_camera/devel/include/darias_intelcamera/joystick.h
 2cafc66ddbbd7e7433088cae2b5642a0 /home/ias/Desktop/thesis/code/ros_camera/devel/include/darias_intelcamera/maplist.h
 24d94f2e6eb3b94e14b769eb6a5f270a /home/ias/Desktop/thesis/code/ros_camera/devel/lib/python3/dist-packages/darias_intelcamera/msg/__init__.py
@@ -12,6 +13,7 @@ e6ec334b62c82a95732129991d444117 /home/ias/Desktop/thesis/code/ros_camera/devel/
 933574ed9968aa8a1e2b727e7cbfcc7a /home/ias/Desktop/thesis/code/ros_camera/devel/share/roseus/ros/darias_intelcamera/msg/joystick.l
 032847878027d49971922aa9bd254721 /home/ias/Desktop/thesis/code/ros_camera/devel/share/roseus/ros/darias_intelcamera/msg/maplist.l
 1280810124735a297b5729dec21ee619 CMakeFiles/clean_test_results
+18610412c2b540416a0cecfc19175421 cam_cfg/CMakeFiles/cam_cfg_gencfg
 0ff0931dea67dd81ed467bff5cf3bd73 darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_joystick
 5c9b8fd0cf7b81e736b7d46fbdf3610d darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_maplist
 b40e13966f4eb9b8bde8c5691e3c55fc darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_cpp

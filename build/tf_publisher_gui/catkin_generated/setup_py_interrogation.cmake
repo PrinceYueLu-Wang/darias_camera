@@ -1,0 +1,7 @@
+set(tf_publisher_gui_SETUP_PY_SETUP_MODULE "distutils.core")
+set(tf_publisher_gui_SETUP_PY_VERSION "0.0.0")
+set(tf_publisher_gui_SETUP_PY_SCRIPTS "")
+set(tf_publisher_gui_SETUP_PY_PACKAGES "app")
+set(tf_publisher_gui_SETUP_PY_PACKAGE_DIRS "src/app")
+set(tf_publisher_gui_SETUP_PY_MODULES "")
+set(tf_publisher_gui_SETUP_PY_MODULE_DIRS "")

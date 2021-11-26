@@ -37,21 +37,28 @@
 
 using namespace std;
 
-class PCDPublisher
+class MeshPCDPub
 {
 
 public:
-
-    PCDPublisher()
+    MeshPCDPub()
     {
-
         pub_ = n_.advertise<sensor_msgs::PointCloud2>("/cam/robotarm", 1);
+
+
+        pcd_arm_ = new pcl::PointCloud<pcl::PointXYZ>();
+        pcd_arm_world_ = new pcl::PointCloud<pcl::PointXYZ>();
 
         // load PLY into PCD
 
         string addressfile = "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/mesh/arm/pointcloud/arm_segment_last_convex.ply";
 
-        if (pcl::io::loadPLYFile<pcl::PointXYZ>(addressfile, *pcd_arm_) == -1)
+        try
+        {
+
+            pcl::io::loadPLYFile<pcl::PointXYZ>(addressfile, *pcd_arm_);
+        }
+        catch (pcl::IOException &ex)
         {
             PCL_ERROR("Couldn't read file1 \n");
         }
@@ -61,47 +68,45 @@ public:
         tfListener_ = new tf2_ros::TransformListener(tfBuffer_);
     }
 
-    // void pointcloudPub()
-    // {
-    //     try
-    //     {
-    //         geometry_msgs::TransformStamped tf_r6link;
+    void pointcloudPub()
+    {
+        try
+        {
+            geometry_msgs::TransformStamped tf_r6link;
 
-    //         tf_r6link = tfBuffer_.lookupTransform("world", "R_6_link", ros::Time(0), ros::Duration(3.0));
+            tf_r6link = tfBuffer_.lookupTransform("world", "R_6_link", ros::Time(0), ros::Duration(3.0));
 
-    //         // tf to eigen
-    //         Eigen::Matrix4f link2world;
+            // tf to eigen
+            Eigen::Matrix4f link2world;
 
-    //         pcl_ros::transformAsMatrix(tf_r6link.transform, link2world);
+            pcl_ros::transformAsMatrix(tf_r6link.transform, link2world);
 
-    //         // pcd to world frame
+            // pcd to world frame
 
-    //         pcl::transformPointCloud(*pcd_arm_, *pcd_arm_world_, link2world);
+            pcl::transformPointCloud(*pcd_arm_, *pcd_arm_world_, link2world);
 
-    //         // pcd to pcdMsgs
+            // pcd to pcdMsgs
 
-    //         sensor_msgs::PointCloud2 pcdMsg;
+            sensor_msgs::PointCloud2 pcdMsg;
 
-    //         pcl::toROSMsg(*pcd_arm_world_, pcdMsg);
+            pcl::toROSMsg(*pcd_arm_world_, pcdMsg);
 
-    //         pcdMsg.header.frame_id = "world";
+            pcdMsg.header.frame_id = "world";
 
-    //         // publish pcd
+            // publish pcd
 
-    //         pub_.publish(pcdMsg);
-    //     }
-    //     catch (tf2::TransformException &ex)
-    //     {
-    //         ROS_WARN("%s", ex.what());
-    //     }
-    // }
+            pub_.publish(pcdMsg);
+        }
+        catch (tf2::TransformException &ex)
+        {
+            ROS_WARN("%s", ex.what());
+        }
+    }
 
 private:
     ros::NodeHandle n_;
 
     ros::Publisher pub_;
-
-    ros::Subscriber sub_;
 
     tf2_ros::Buffer tfBuffer_;
 
@@ -115,13 +120,13 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "pcl_example");
 
-    PCDPublisher pcd_pub;
+    MeshPCDPub pcd_pub;
 
     ros::Rate loop_rate(1);
 
     while (ros::ok())
     {
-        // pcd_pub.pointcloudPub();
+        pcd_pub.pointcloudPub();
         loop_rate.sleep();
     }
     return 0;

@@ -183,6 +183,12 @@ target_link_libraries(camera_oct2pcd ${catkin_LIBRARIES})
 
 add_executable(cam_mesh2pcd src/cam_mesh2pcd.cpp)
 target_link_libraries(cam_mesh2pcd ${catkin_LIBRARIES})
+# jointStates_publisher
+add_executable(jointStates_publisher src/jointStates_publisher.cpp)
+target_link_libraries(jointStates_publisher ${catkin_LIBRARIES})
+
+# add_executable(abc src/abc.cpp)
+# target_link_libraries(abc ${catkin_LIBRARIES})
 
 # add_executable(camera_filtered_pcd src/camera_filtered_pcd.cpp)
 # target_link_libraries(camera_filtered_pcd ${catkin_LIBRARIES})

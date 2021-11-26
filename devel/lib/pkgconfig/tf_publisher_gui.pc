@@ -1,0 +1,8 @@
+prefix=/home/ias/Desktop/thesis/code/ros_camera/devel
+
+Name: tf_publisher_gui
+Description: Description of tf_publisher_gui
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

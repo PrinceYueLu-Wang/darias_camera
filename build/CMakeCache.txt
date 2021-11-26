@@ -421,6 +421,12 @@ bond_DIR:PATH=/opt/ros/noetic/share/bond/cmake
 //The directory containing a CMake configuration file for bondcpp.
 bondcpp_DIR:PATH=/opt/ros/noetic/share/bondcpp/cmake
 
+//Value Computed by CMake
+cam_cfg_BINARY_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/build/cam_cfg
+
+//Value Computed by CMake
+cam_cfg_SOURCE_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/src/cam_cfg
+
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 
@@ -519,7 +525,7 @@ gtest_hide_internal_symbols:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/noetic/lib/libtopic_tools.so
+lib:FILEPATH=/opt/ros/noetic/lib/libtf2.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/noetic/share/message_filters/cmake
@@ -590,6 +596,9 @@ roslib_DIR:PATH=/opt/ros/noetic/share/roslib/cmake
 //The directory containing a CMake configuration file for roslz4.
 roslz4_DIR:PATH=/opt/ros/noetic/share/roslz4/cmake
 
+//The directory containing a CMake configuration file for rosmsg.
+rosmsg_DIR:PATH=/opt/ros/noetic/share/rosmsg/cmake
+
 //The directory containing a CMake configuration file for rospack.
 rospack_DIR:PATH=/opt/ros/noetic/share/rospack/cmake
 
@@ -628,6 +637,12 @@ tf2_ros_DIR:PATH=/opt/ros/noetic/share/tf2_ros/cmake
 
 //The directory containing a CMake configuration file for tf.
 tf_DIR:PATH=/opt/ros/noetic/share/tf/cmake
+
+//Value Computed by CMake
+tf_publisher_gui_BINARY_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/build/tf_publisher_gui
+
+//Value Computed by CMake
+tf_publisher_gui_SOURCE_DIR:STATIC=/home/ias/Desktop/thesis/code/ros_camera/src/tf_publisher_gui
 
 //The directory containing a CMake configuration file for topic_tools.
 topic_tools_DIR:PATH=/opt/ros/noetic/share/topic_tools/cmake
@@ -812,7 +827,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
