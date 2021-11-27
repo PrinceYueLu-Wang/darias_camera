@@ -1000,6 +1000,19 @@ pcl_ros_gencfg/fast:
 .PHONY : pcl_ros_gencfg/fast
 
 #=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_py
+
+# Build rule for target.
+pcl_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_py
+.PHONY : pcl_msgs_generate_messages_py
+
+# fast build rule for target.
+pcl_msgs_generate_messages_py/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
+
+#=============================================================================
 # Target rules for targets named octomap_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -1416,19 +1429,6 @@ darias_intelcamera_generate_messages/fast:
 .PHONY : darias_intelcamera_generate_messages/fast
 
 #=============================================================================
-# Target rules for targets named pcl_msgs_generate_messages_py
-
-# Build rule for target.
-pcl_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_py
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	$(MAKE) -f darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
-
-#=============================================================================
 # Target rules for targets named topic_tools_generate_messages_lisp
 
 # Build rule for target.
@@ -1675,6 +1675,19 @@ cam_img2pcdtree/fast:
 	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/build
 .PHONY : cam_img2pcdtree/fast
 
+#=============================================================================
+# Target rules for targets named cam_pcd2map
+
+# Build rule for target.
+cam_pcd2map: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cam_pcd2map
+.PHONY : cam_pcd2map
+
+# fast build rule for target.
+cam_pcd2map/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map.dir/build
+.PHONY : cam_pcd2map/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1752,6 +1765,7 @@ help:
 	@echo "... octomap_msgs_generate_messages_cpp"
 	@echo "... darias_intelcamera_geneus"
 	@echo "... pcl_ros_gencfg"
+	@echo "... pcl_msgs_generate_messages_py"
 	@echo "... octomap_msgs_generate_messages_nodejs"
 	@echo "... darias_intelcamera_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_cpp"
@@ -1784,7 +1798,6 @@ help:
 	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... std_srvs_generate_messages_py"
 	@echo "... darias_intelcamera_generate_messages"
-	@echo "... pcl_msgs_generate_messages_py"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_nodejs"
 	@echo "... nodelet_topic_tools_gencfg"
@@ -1804,6 +1817,7 @@ help:
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... jointStates_publisher"
 	@echo "... cam_img2pcdtree"
+	@echo "... cam_pcd2map"
 .PHONY : help
 
 

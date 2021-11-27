@@ -179,6 +179,11 @@ target_link_libraries(cam_img2pcdtree ${catkin_LIBRARIES})
 add_dependencies(cam_img2pcdtree ${catkin_EXPORTED_TARGETS})
 
 
+add_executable(cam_pcd2map src/cam_pcd2map.cpp)
+target_link_libraries(cam_pcd2map ${catkin_LIBRARIES})
+
+
+
 
 
 ## Add cmake target dependencies of the library

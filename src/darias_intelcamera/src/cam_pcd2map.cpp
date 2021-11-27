@@ -54,7 +54,7 @@ public:
 
         pub_octomap_filtered = n_.advertise<octomap_msgs::Octomap>("/camera_visual/filtered/octomap", 1);
 
-        pub_pointcloud_filtered = n_.advertise<pcl::PointCloud<pcl::PointXYZ>>("/camera_visual/filtered/pointcloud", 1);
+        pub_pointcloud_filtered = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/filtered/pointcloud", 1);
 
         sub_pointcloud_all = n_.subscribe("/camera_visual/raw/pointcloud_voxel", 1, &MapGeneration::callback_cam, this);
         sub_pointcloud_arm = n_.subscribe("/camera_visual/mesh/R_5_link", 1, &MapGeneration::callback_arm, this);
@@ -81,7 +81,7 @@ public:
 
     void pointCloudCompare()
     {
-        
+        if((pcd_arm->size()!=0)&(pcd_cameraPcd->size()!=0)){
         // kd tree
         pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
         kdtree.setInputCloud(pcd_arm); //在pcd_arm中进行索引
@@ -90,7 +90,7 @@ public:
         vector<int> pointIdxNKNSearch(K);
         vector<float> pointNKNSquaredDistance(K);
 
-        pcl::PointIndices::Ptr indices_overlap;
+        pcl::PointIndices::Ptr indices_overlap(new pcl::PointIndices());
 
         //camera_pointcloud 中的每一个点在 pcd_arm 中找到最近的一个对应点,分别输出对应点
         for (size_t i = 0; i < pcd_cameraPcd->size(); i++)
@@ -146,6 +146,8 @@ public:
         octomapMsg.header.frame_id = "world";
 
         pub_octomap_filtered.publish(octomapMsg);
+
+        }
 
     }
 
