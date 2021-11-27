@@ -20,11 +20,6 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl_ros/transforms.h>
 
-//pcl filter
-#include <pcl/filters/voxel_grid.h>
-#include<pcl/filters/passthrough.h>  
-#include<pcl/filters/voxel_grid.h>  
-
 //ros msg
 #include <sensor_msgs/PointCloud2.h>
 #include <geometry_msgs/Transform.h>
@@ -51,9 +46,13 @@ class MeshPCDPub
 {
 
 public:
-    MeshPCDPub():pcd_arm_(new pcl::PointCloud<pcl::PointXYZ>),pcd_arm_world_(new pcl::PointCloud<pcl::PointXYZ>())
+    MeshPCDPub()
     {
-        pub_ = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/mesh/R_5_link", 1);
+        pub_ = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/mesh_R_5_link", 1);
+
+
+        pcd_arm_ = new pcl::PointCloud<pcl::PointXYZ>();
+        pcd_arm_world_ = new pcl::PointCloud<pcl::PointXYZ>();
 
         // load PLY into PCD
 
@@ -108,26 +107,44 @@ public:
 
             tf_trans2(0,0) = -1.0;
             tf_trans2(1,1) = -1.0;
+            
 
             tf_out = tf_in * tf_trans2;
+            
+
+
+
+            // geometry_msgs::Quaternion q_raw = tf_r6link.transform.rotation;
+
+
+            // tf2::Quaternion q_orig, q_rot, q_new;
+
+            // tf2::convert(q_raw , q_orig);
+
+            // q_rot.setRPY(0.0, 0.0, 3.14159);
+
+            // q_new = q_orig*q_rot; 
+
+            // q_new.normalize();
+
+            // geometry_msgs::Quaternion q_new_msg;
+
+            // tf2::convert(q_new , q_new_msg);
+
+            // tf_r6link.transform.rotation = q_new_msg;
+            // tf_r6link.transform.translation.z = tf_r6link.transform.translation.z+0.124;
+
+            // pcl_ros::transformAsMatrix(tf_r6link.transform, link2world);
+
+            // pcd to world frame
 
             pcl::transformPointCloud(*pcd_arm_, *pcd_arm_world_, tf_out);
-
-            // voxel grid
-
-            pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
-
-            voxel_grid.setInputCloud (pcd_arm_world_);
-            voxel_grid.setLeafSize (0.02f, 0.02f, 0.02f);
-
-            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel(new pcl::PointCloud<pcl::PointXYZ>);
-            voxel_grid.filter (*pcd_voxel);
 
             // pcd to pcdMsgs
 
             sensor_msgs::PointCloud2 pcdMsg;
 
-            pcl::toROSMsg(*pcd_voxel, pcdMsg);
+            pcl::toROSMsg(*pcd_arm_world_, pcdMsg);
 
             pcdMsg.header.frame_id = "world";
 
@@ -154,9 +171,8 @@ private:
 
     tf2_ros::TransformListener *tfListener_;
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_arm_;
-    pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_arm_world_;
-
+    pcl::PointCloud<pcl::PointXYZ> *pcd_arm_;
+    pcl::PointCloud<pcl::PointXYZ> *pcd_arm_world_;
 };
 
 int main(int argc, char **argv)

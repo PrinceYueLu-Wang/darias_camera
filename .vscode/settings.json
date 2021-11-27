@@ -15,5 +15,6 @@
         "future": "cpp",
         "string": "cpp",
         "regex": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

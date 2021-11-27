@@ -438,7 +438,7 @@ tf_adjustConfig::GroupDescription<tf_adjustConfig::DEFAULT, tf_adjustConfig> Def
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.z = 0.8;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.z = 0.56;
+      __default__.z = 0.604;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(tf_adjustConfig::AbstractParamDescriptionConstPtr(new tf_adjustConfig::ParamDescription<double>("z", "double", 0, "z param.", "", &tf_adjustConfig::z)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -448,7 +448,7 @@ tf_adjustConfig::GroupDescription<tf_adjustConfig::DEFAULT, tf_adjustConfig> Def
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.R = 3.14159;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.R = 0.35;
+      __default__.R = 0.24;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(tf_adjustConfig::AbstractParamDescriptionConstPtr(new tf_adjustConfig::ParamDescription<double>("R", "double", 0, "r param.", "", &tf_adjustConfig::R)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

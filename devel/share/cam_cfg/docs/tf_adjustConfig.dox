@@ -4,8 +4,8 @@ Reads and maintains the following parameters on the ROS server
 
 - \b "~x" : \b [double] x param. min: 0.1, default: 0.157, max: 0.3
 - \b "~y" : \b [double] y param. min: -0.2, default: -0.024, max: 0.2
-- \b "~z" : \b [double] z param. min: 0.4, default: 0.56, max: 0.8
-- \b "~R" : \b [double] r param. min: -3.14159, default: 0.35, max: 3.14159
+- \b "~z" : \b [double] z param. min: 0.4, default: 0.604, max: 0.8
+- \b "~R" : \b [double] r param. min: -3.14159, default: 0.24, max: 3.14159
 - \b "~P" : \b [double] p param. min: -3.14159, default: 1.002, max: 3.14159
 - \b "~Y" : \b [double] y param. min: -3.14159, default: 0.265, max: 3.14159
 
