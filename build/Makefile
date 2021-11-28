@@ -1624,6 +1624,19 @@ darias_intelcamera_genpy/fast:
 .PHONY : darias_intelcamera_genpy/fast
 
 #=============================================================================
+# Target rules for targets named cam_meshes2pcd
+
+# Build rule for target.
+cam_meshes2pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cam_meshes2pcd
+.PHONY : cam_meshes2pcd
+
+# fast build rule for target.
+cam_meshes2pcd/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build
+.PHONY : cam_meshes2pcd/fast
+
+#=============================================================================
 # Target rules for targets named darias_intelcamera_generate_messages_nodejs
 
 # Build rule for target.
@@ -1813,6 +1826,7 @@ help:
 	@echo "... darias_intelcamera_gencpp"
 	@echo "... darias_intelcamera_genlisp"
 	@echo "... darias_intelcamera_genpy"
+	@echo "... cam_meshes2pcd"
 	@echo "... darias_intelcamera_generate_messages_nodejs"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... jointStates_publisher"

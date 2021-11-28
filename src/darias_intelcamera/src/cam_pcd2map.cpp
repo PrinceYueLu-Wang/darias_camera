@@ -57,7 +57,7 @@ public:
         pub_pointcloud_filtered = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/filtered/pointcloud", 1);
 
         sub_pointcloud_all = n_.subscribe("/camera_visual/raw/pointcloud_voxel", 1, &MapGeneration::callback_cam, this);
-        sub_pointcloud_arm = n_.subscribe("/camera_visual/mesh/R_5_link", 1, &MapGeneration::callback_arm, this);
+        sub_pointcloud_arm = n_.subscribe("/camera_visual/mesh/rightArm", 1, &MapGeneration::callback_arm, this);
     }
 
     void callback_cam(const sensor_msgs::PointCloud2::ConstPtr &msgs)
@@ -101,7 +101,7 @@ public:
             searchPoint.z = pcd_cameraPcd->points[i].z;
             if (kdtree.nearestKSearch(searchPoint, K, pointIdxNKNSearch, pointNKNSquaredDistance) > 0)
             {
-                if (pointNKNSquaredDistance[0] < 0.04)
+                if (pointNKNSquaredDistance[0] < 0.01)
                 { 
                     // distance < 0.05 treat as overlapped points
                     indices_overlap->indices.push_back(i);

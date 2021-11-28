@@ -14,7 +14,9 @@
     "files.associations": {
         "future": "cpp",
         "string": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     },
     "cmake.configureOnOpen": false
 }

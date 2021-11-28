@@ -159,6 +159,7 @@
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/darias_intelcamera_genlisp.dir
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/install.dir
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir
+/home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_cpp.dir
 /home/ias/Desktop/thesis/code/ros_camera/build/darias_intelcamera/CMakeFiles/jointStates_publisher.dir
