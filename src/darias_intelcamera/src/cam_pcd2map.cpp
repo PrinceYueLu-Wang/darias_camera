@@ -114,8 +114,10 @@ public:
         pcl::ExtractIndices<pcl::PointXYZ> extract;
         extract.setInputCloud(pcd_cameraPcd);
         extract.setIndices(indices_overlap);
+
         //when true extract points not in indices
         extract.setNegative(true);
+
         extract.filter(*pcd_cameraPcd_filtered);
         
         // pointcloud msgs
@@ -144,7 +146,7 @@ public:
         octomap_msgs::Octomap octomapMsg;
         octomap_msgs::fullMapToMsg(tree, octomapMsg);
         octomapMsg.header.frame_id = "world";
-
+        
         pub_octomap_filtered.publish(octomapMsg);
 
         }

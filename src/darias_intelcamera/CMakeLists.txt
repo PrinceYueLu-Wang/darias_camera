@@ -167,10 +167,6 @@ include_directories(
 # )
 
 
-
-add_executable(cam_mesh2pcd src/cam_mesh2pcd.cpp)
-target_link_libraries(cam_mesh2pcd ${catkin_LIBRARIES})
-
 add_executable(jointStates_publisher src/jointStates_publisher.cpp)
 target_link_libraries(jointStates_publisher ${catkin_LIBRARIES})
 
@@ -178,15 +174,11 @@ add_executable(cam_img2pcdtree src/cam_img2pcdtree.cpp)
 target_link_libraries(cam_img2pcdtree ${catkin_LIBRARIES})
 add_dependencies(cam_img2pcdtree ${catkin_EXPORTED_TARGETS})
 
-
 add_executable(cam_pcd2map src/cam_pcd2map.cpp)
 target_link_libraries(cam_pcd2map ${catkin_LIBRARIES})
 
 add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
 target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
-
-
-
 
 
 ## Add cmake target dependencies of the library

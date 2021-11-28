@@ -1,6 +1,8 @@
 <launch>
 
-    
+    <arg name="delay_time1" default="10.0" />
+    <arg name="delay_time2" default="15.0" />  
+
     <group ns="camera">
         <arg name="serial_no" default="" />
         <arg name="json_file_path" default="" />
@@ -59,10 +61,12 @@
 
     </group>
 
-    <node name="cam_mesh2pcd" pkg="darias_intelcamera" type="cam_mesh2pcd" />
     <node name="cam_img2pcdtree" pkg="darias_intelcamera" type="cam_img2pcdtree" />
-    <!-- <node name="cam_pcd2map" pkg="darias_intelcamera" type="cam_pcd2map" /> -->
 
-    
+    <!-- need 10 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_meshes2pcd" pkg="darias_intelcamera" type="cam_meshes2pcd" launch-prefix="bash -c 'sleep $(arg delay_time1); $0 $@' "/>
 
+    <!-- need 15 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_pcd2map" pkg="darias_intelcamera" type="cam_pcd2map" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/>
+    <!-- launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " /> -->
 </launch>

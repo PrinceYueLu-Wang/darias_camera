@@ -64,7 +64,7 @@ public:
         {   
             cout<<i<<endl;
             init_ptr.reset(new pcl::PointCloud<pcl::PointXYZ>);
-            pcd_arm_.push_back(init_ptr);
+            pcd_rightarm_.push_back(init_ptr);
             cout<<i<<endl;
         }
 
@@ -72,16 +72,16 @@ public:
         {   
             cout<<i<<endl;
             init_ptr.reset(new pcl::PointCloud<pcl::PointXYZ>);
-            pcd_arm_world_.push_back(init_ptr);
+            pcd_rightarm_world_.push_back(init_ptr);
             cout<<i<<endl;
         }
         // convert PLY into PCD
 
         for (size_t i = 0; i < 6; ++i){
 
-            pcl::io::loadPLYFile<pcl::PointXYZ>(rightArm_mesheFile[i], *pcd_arm_[i]);
+            pcl::io::loadPLYFile<pcl::PointXYZ>(rightArm_mesheFile[i], *pcd_rightarm_[i]);
 
-            cout<<pcd_arm_[i]->size()<<endl;
+            cout<<pcd_rightarm_[i]->size()<<endl;
         }
         //publisher initialization
 
@@ -123,15 +123,15 @@ public:
 
             tf_out = tf_in * tf_trans;
 
-            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_arm_world_tmp(new  pcl::PointCloud<pcl::PointXYZ>());
+            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_rightarm_world_tmp(new  pcl::PointCloud<pcl::PointXYZ>());
 
-            pcl::transformPointCloud(*pcd_arm_[link_idx-1], *pcd_arm_world_tmp, tf_out);
+            pcl::transformPointCloud(*pcd_rightarm_[link_idx-1], *pcd_rightarm_world_tmp, tf_out);
 
             // voxel grid
 
             pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
 
-            voxel_grid.setInputCloud (pcd_arm_world_tmp);
+            voxel_grid.setInputCloud (pcd_rightarm_world_tmp);
 
             voxel_grid.setLeafSize (0.02f, 0.02f, 0.02f);
 
@@ -139,7 +139,7 @@ public:
 
             voxel_grid.filter (*pcd_voxel);
 
-            *pcd_arm_world_[link_idx-1] =  *pcd_voxel;
+            *pcd_rightarm_world_[link_idx-1] =  *pcd_voxel;
 
         }
         catch (tf2::TransformException &ex)
@@ -161,8 +161,8 @@ public:
             ROS_INFO("No. %d link pointcloud is converted",char(i));
         }
 
-        *pcd_combined_ = *pcd_arm_world_[0]+*pcd_arm_world_[1]+*pcd_arm_world_[2]
-                        +*pcd_arm_world_[2]+*pcd_arm_world_[3]+*pcd_arm_world_[4]+*pcd_arm_world_[5];
+        *pcd_combined_ = *pcd_rightarm_world_[0]+*pcd_rightarm_world_[1]+*pcd_rightarm_world_[2]
+                        +*pcd_rightarm_world_[2]+*pcd_rightarm_world_[3]+*pcd_rightarm_world_[4]+*pcd_rightarm_world_[5];
 
         // pointcloud message
 
@@ -184,8 +184,10 @@ private:
     tf2_ros::Buffer tfBuffer_;
     tf2_ros::TransformListener *tfListener_;
 
-    vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_arm_;
-    vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_arm_world_;
+    vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_rightarm_;
+    vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_rightarm_world_;
+
+
     pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_combined_;
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr init_ptr;

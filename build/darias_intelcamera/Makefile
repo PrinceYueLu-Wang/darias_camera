@@ -558,21 +558,6 @@ darias_intelcamera_generate_messages_cpp/fast:
 .PHONY : darias_intelcamera_generate_messages_cpp/fast
 
 # Convenience name for target.
-darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
-
-# Convenience name for target.
-cam_mesh2pcd: darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/rule
-
-.PHONY : cam_mesh2pcd
-
-# fast build rule for target.
-cam_mesh2pcd/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build
-.PHONY : cam_mesh2pcd/fast
-
-# Convenience name for target.
 darias_intelcamera/CMakeFiles/bond_generate_messages_lisp.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/bond_generate_messages_lisp.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/bond_generate_messages_lisp.dir/rule
@@ -978,36 +963,6 @@ darias_intelcamera_genpy/fast:
 .PHONY : darias_intelcamera_genpy/fast
 
 # Convenience name for target.
-darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
-
-# Convenience name for target.
-cam_meshes2pcd: darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
-
-.PHONY : cam_meshes2pcd
-
-# fast build rule for target.
-cam_meshes2pcd/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build
-.PHONY : cam_meshes2pcd/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-darias_intelcamera_generate_messages_nodejs: darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
-
-.PHONY : darias_intelcamera_generate_messages_nodejs
-
-# fast build rule for target.
-darias_intelcamera_generate_messages_nodejs/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/build
-.PHONY : darias_intelcamera_generate_messages_nodejs/fast
-
-# Convenience name for target.
 darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
@@ -1067,6 +1022,36 @@ cam_pcd2map/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map.dir/build
 .PHONY : cam_pcd2map/fast
 
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+darias_intelcamera_generate_messages_nodejs: darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/rule
+
+.PHONY : darias_intelcamera_generate_messages_nodejs
+
+# fast build rule for target.
+darias_intelcamera_generate_messages_nodejs/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_nodejs.dir/build
+.PHONY : darias_intelcamera_generate_messages_nodejs/fast
+
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
+
+# Convenience name for target.
+cam_meshes2pcd: darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
+
+.PHONY : cam_meshes2pcd
+
+# fast build rule for target.
+cam_meshes2pcd/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build
+.PHONY : cam_meshes2pcd/fast
+
 src/cam_img2pcdtree.o: src/cam_img2pcdtree.cpp.o
 
 .PHONY : src/cam_img2pcdtree.o
@@ -1093,33 +1078,6 @@ src/cam_img2pcdtree.s: src/cam_img2pcdtree.cpp.s
 src/cam_img2pcdtree.cpp.s:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/src/cam_img2pcdtree.cpp.s
 .PHONY : src/cam_img2pcdtree.cpp.s
-
-src/cam_mesh2pcd.o: src/cam_mesh2pcd.cpp.o
-
-.PHONY : src/cam_mesh2pcd.o
-
-# target to build an object file
-src/cam_mesh2pcd.cpp.o:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.o
-.PHONY : src/cam_mesh2pcd.cpp.o
-
-src/cam_mesh2pcd.i: src/cam_mesh2pcd.cpp.i
-
-.PHONY : src/cam_mesh2pcd.i
-
-# target to preprocess a source file
-src/cam_mesh2pcd.cpp.i:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.i
-.PHONY : src/cam_mesh2pcd.cpp.i
-
-src/cam_mesh2pcd.s: src/cam_mesh2pcd.cpp.s
-
-.PHONY : src/cam_mesh2pcd.s
-
-# target to generate assembly for a file
-src/cam_mesh2pcd.cpp.s:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_mesh2pcd.dir/src/cam_mesh2pcd.cpp.s
-.PHONY : src/cam_mesh2pcd.cpp.s
 
 src/cam_meshes2pcd.o: src/cam_meshes2pcd.cpp.o
 
@@ -1239,7 +1197,6 @@ help:
 	@echo "... tf_generate_messages_py"
 	@echo "... topic_tools_generate_messages_py"
 	@echo "... darias_intelcamera_generate_messages_cpp"
-	@echo "... cam_mesh2pcd"
 	@echo "... bond_generate_messages_lisp"
 	@echo "... tf_generate_messages_nodejs"
 	@echo "... octomap_msgs_generate_messages_lisp"
@@ -1269,18 +1226,15 @@ help:
 	@echo "... darias_intelcamera_genlisp"
 	@echo "... install"
 	@echo "... darias_intelcamera_genpy"
-	@echo "... cam_meshes2pcd"
-	@echo "... darias_intelcamera_generate_messages_nodejs"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... jointStates_publisher"
 	@echo "... cam_img2pcdtree"
 	@echo "... cam_pcd2map"
+	@echo "... darias_intelcamera_generate_messages_nodejs"
+	@echo "... cam_meshes2pcd"
 	@echo "... src/cam_img2pcdtree.o"
 	@echo "... src/cam_img2pcdtree.i"
 	@echo "... src/cam_img2pcdtree.s"
-	@echo "... src/cam_mesh2pcd.o"
-	@echo "... src/cam_mesh2pcd.i"
-	@echo "... src/cam_mesh2pcd.s"
 	@echo "... src/cam_meshes2pcd.o"
 	@echo "... src/cam_meshes2pcd.i"
 	@echo "... src/cam_meshes2pcd.s"
