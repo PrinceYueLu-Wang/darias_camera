@@ -10,9 +10,9 @@ project(darias_intelcamera)
 
 
 
-set(OpenCV_DIR /home/ias/Documents/yifei/package/build)
-set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
-set(pinocchio_DIR /opt/ros/noetic/share/cmake/pinocchio)
+# set(OpenCV_DIR /home/ias/Documents/yifei/package/build)
+# set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
+# set(pinocchio_DIR /opt/ros/noetic/share/cmake/pinocchio)
 
 
 
@@ -30,13 +30,13 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf2_ros
-  OpenCV
-  visualization_msgs
 
-  pinocchio
+  # visualization_msgs
+  # OpenCV
+  # pinocchio
 )
 
-find_package(realsense2 REQUIRED)
+# find_package(realsense2 REQUIRED)
 
 
 ## System dependencies are found with CMake's conventions

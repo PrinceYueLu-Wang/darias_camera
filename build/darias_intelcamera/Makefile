@@ -68,27 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -100,6 +79,17 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target test
 test:
@@ -122,6 +112,16 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install
 install: preinstall
@@ -258,21 +258,6 @@ pcl_ros_gencfg/fast:
 .PHONY : pcl_ros_gencfg/fast
 
 # Convenience name for target.
-darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_py: darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_nodejs.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_nodejs.dir/rule
@@ -346,6 +331,21 @@ pcl_msgs_generate_messages_eus: darias_intelcamera/CMakeFiles/pcl_msgs_generate_
 pcl_msgs_generate_messages_eus/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
 .PHONY : pcl_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_cpp: darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+
+.PHONY : topic_tools_generate_messages_cpp
+
+# fast build rule for target.
+topic_tools_generate_messages_cpp/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+.PHONY : topic_tools_generate_messages_cpp/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/nodelet_generate_messages_lisp.dir/rule:
@@ -496,6 +496,21 @@ bond_generate_messages_cpp: darias_intelcamera/CMakeFiles/bond_generate_messages
 bond_generate_messages_cpp/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/bond_generate_messages_cpp.dir/build.make darias_intelcamera/CMakeFiles/bond_generate_messages_cpp.dir/build
 .PHONY : bond_generate_messages_cpp/fast
+
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
+
+# Convenience name for target.
+nodelet_topic_tools_gencfg: darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
+
+.PHONY : nodelet_topic_tools_gencfg
+
+# fast build rule for target.
+nodelet_topic_tools_gencfg/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/build.make darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/build
+.PHONY : nodelet_topic_tools_gencfg/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/darias_intelcamera_generate_messages_lisp.dir/rule:
@@ -738,6 +753,21 @@ darias_intelcamera_generate_messages/fast:
 .PHONY : darias_intelcamera_generate_messages/fast
 
 # Convenience name for target.
+darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+pcl_msgs_generate_messages_py: darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+
+.PHONY : pcl_msgs_generate_messages_py
+
+# fast build rule for target.
+pcl_msgs_generate_messages_py/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 darias_intelcamera/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
@@ -766,111 +796,6 @@ topic_tools_generate_messages_nodejs: darias_intelcamera/CMakeFiles/topic_tools_
 topic_tools_generate_messages_nodejs/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build
 .PHONY : topic_tools_generate_messages_nodejs/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-
-# Convenience name for target.
-nodelet_topic_tools_gencfg: darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-
-.PHONY : nodelet_topic_tools_gencfg
-
-# fast build rule for target.
-nodelet_topic_tools_gencfg/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/build.make darias_intelcamera/CMakeFiles/nodelet_topic_tools_gencfg.dir/build
-.PHONY : nodelet_topic_tools_gencfg/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_cpp: darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_cpp
-
-# fast build rule for target.
-visualization_msgs_generate_messages_cpp/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
-.PHONY : visualization_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_eus: darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_eus
-
-# fast build rule for target.
-visualization_msgs_generate_messages_eus/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
-.PHONY : visualization_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_lisp: darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_lisp
-
-# fast build rule for target.
-visualization_msgs_generate_messages_lisp/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
-.PHONY : visualization_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_nodejs: darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-visualization_msgs_generate_messages_nodejs/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
-.PHONY : visualization_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_cpp: darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-
-.PHONY : topic_tools_generate_messages_cpp
-
-# fast build rule for target.
-topic_tools_generate_messages_cpp/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make darias_intelcamera/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
-.PHONY : topic_tools_generate_messages_cpp/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_py: darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_py
-
-# fast build rule for target.
-visualization_msgs_generate_messages_py/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make darias_intelcamera/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
-.PHONY : visualization_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/_darias_intelcamera_generate_messages_check_deps_maplist.dir/rule:
@@ -946,21 +871,6 @@ darias_intelcamera_genlisp: darias_intelcamera/CMakeFiles/darias_intelcamera_gen
 darias_intelcamera_genlisp/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_genlisp.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_genlisp.dir/build
 .PHONY : darias_intelcamera_genlisp/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
-
-# Convenience name for target.
-darias_intelcamera_genpy: darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
-
-.PHONY : darias_intelcamera_genpy
-
-# fast build rule for target.
-darias_intelcamera_genpy/fast:
-	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/build
-.PHONY : darias_intelcamera_genpy/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
@@ -1051,6 +961,21 @@ cam_meshes2pcd: darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/rule
 cam_meshes2pcd/fast:
 	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build.make darias_intelcamera/CMakeFiles/cam_meshes2pcd.dir/build
 .PHONY : cam_meshes2pcd/fast
+
+# Convenience name for target.
+darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
+
+# Convenience name for target.
+darias_intelcamera_genpy: darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/rule
+
+.PHONY : darias_intelcamera_genpy
+
+# fast build rule for target.
+darias_intelcamera_genpy/fast:
+	cd /home/ias/Desktop/thesis/code/ros_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/build.make darias_intelcamera/CMakeFiles/darias_intelcamera_genpy.dir/build
+.PHONY : darias_intelcamera_genpy/fast
 
 src/cam_img2pcdtree.o: src/cam_img2pcdtree.cpp.o
 
@@ -1167,8 +1092,6 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... list_install_components"
-	@echo "... edit_cache"
 	@echo "... std_srvs_generate_messages_eus"
 	@echo "... nodelet_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_cpp"
@@ -1176,13 +1099,12 @@ help:
 	@echo "... install/local"
 	@echo "... darias_intelcamera_geneus"
 	@echo "... pcl_ros_gencfg"
-	@echo "... test"
-	@echo "... pcl_msgs_generate_messages_py"
 	@echo "... octomap_msgs_generate_messages_nodejs"
 	@echo "... darias_intelcamera_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_cpp"
 	@echo "... tf_generate_messages_eus"
 	@echo "... pcl_msgs_generate_messages_eus"
+	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... bond_generate_messages_py"
 	@echo "... bond_generate_messages_nodejs"
@@ -1191,8 +1113,10 @@ help:
 	@echo "... octomap_msgs_generate_messages_eus"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_eus"
+	@echo "... edit_cache"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... bond_generate_messages_cpp"
+	@echo "... nodelet_topic_tools_gencfg"
 	@echo "... darias_intelcamera_generate_messages_lisp"
 	@echo "... tf_generate_messages_py"
 	@echo "... topic_tools_generate_messages_py"
@@ -1209,29 +1133,25 @@ help:
 	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... std_srvs_generate_messages_py"
 	@echo "... darias_intelcamera_generate_messages"
+	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... test"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_nodejs"
-	@echo "... nodelet_topic_tools_gencfg"
-	@echo "... visualization_msgs_generate_messages_cpp"
-	@echo "... visualization_msgs_generate_messages_eus"
-	@echo "... visualization_msgs_generate_messages_lisp"
-	@echo "... visualization_msgs_generate_messages_nodejs"
-	@echo "... topic_tools_generate_messages_cpp"
-	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... _darias_intelcamera_generate_messages_check_deps_maplist"
 	@echo "... rebuild_cache"
 	@echo "... _darias_intelcamera_generate_messages_check_deps_joystick"
 	@echo "... bond_generate_messages_eus"
 	@echo "... darias_intelcamera_gencpp"
 	@echo "... darias_intelcamera_genlisp"
-	@echo "... install"
-	@echo "... darias_intelcamera_genpy"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... jointStates_publisher"
 	@echo "... cam_img2pcdtree"
 	@echo "... cam_pcd2map"
 	@echo "... darias_intelcamera_generate_messages_nodejs"
 	@echo "... cam_meshes2pcd"
+	@echo "... list_install_components"
+	@echo "... darias_intelcamera_genpy"
+	@echo "... install"
 	@echo "... src/cam_img2pcdtree.o"
 	@echo "... src/cam_img2pcdtree.i"
 	@echo "... src/cam_img2pcdtree.s"
