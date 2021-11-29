@@ -206,7 +206,7 @@ int main(int argc, char **argv)
     //Create an object of class SubscribeAndPublish that will take care of everything
     StateProcess SAPObject;
 
-    ros::Rate loop_rate = 10;
+    ros::Rate loop_rate = 30;
 
     while (ros::ok())
     {

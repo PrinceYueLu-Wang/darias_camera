@@ -206,7 +206,7 @@ int main(int argc, char **argv)
 
     MeshPCDPub pcd_pub;
 
-    ros::Rate loop_rate(1);
+    ros::Rate loop_rate(30);
 
     while (ros::ok())
     {

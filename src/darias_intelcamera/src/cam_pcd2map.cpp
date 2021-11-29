@@ -174,7 +174,7 @@ int main(int argc, char **argv)
 
     MapGeneration map;
 
-    ros::Rate loop_rate = 10;
+    ros::Rate loop_rate = 30;
 
     while (ros::ok())
     {
