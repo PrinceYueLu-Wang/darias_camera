@@ -53,5 +53,7 @@ tf2_ros offer functions to lookup or transformation between different frames. In
 
 ### RosNode : cam_img2pcdtree
 ## Description for RosLaunch
+- put commands in terminal
+- ```ros_remote```
 
 rosbag record -O Nov29Pose1 /joint_states /camera/depth/color/points
