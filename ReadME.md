@@ -152,7 +152,7 @@ for example ```/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/m
 ---
 build
 - if there were build cache errors, in catkin workingspace run :  ```rm rf ./build ./devel```
-- in catkin workingspace run : ```catkin_build```
+- in catkin workingspace run : ```catkin_make```
 
 ---
 roslaunch
