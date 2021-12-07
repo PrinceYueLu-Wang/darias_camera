@@ -161,9 +161,11 @@ public:
             ROS_INFO("No. %d link pointcloud is converted",char(i));
         }
 
-        *pcd_combined_ = *pcd_rightarm_world_[0]+*pcd_rightarm_world_[1]+*pcd_rightarm_world_[2]
-                        +*pcd_rightarm_world_[2]+*pcd_rightarm_world_[3]+*pcd_rightarm_world_[4]+*pcd_rightarm_world_[5];
-
+        *pcd_combined_ = *pcd_rightarm_world_[0]+*pcd_rightarm_world_[1];
+        *pcd_combined_ = *pcd_combined_+*pcd_rightarm_world_[2];
+        *pcd_combined_ = *pcd_combined_+*pcd_rightarm_world_[3];
+        *pcd_combined_ = *pcd_combined_+*pcd_rightarm_world_[4];
+        *pcd_combined_ = *pcd_combined_+*pcd_rightarm_world_[5];
         // pointcloud message
 
         sensor_msgs::PointCloud2 pcdMsg;
@@ -196,7 +198,7 @@ private:
     vector<string> rightArm_mesheFile = vector<string>(6);
     vector<string> leftArm_mesheFile = vector<string>(6);
 
-    string meshFolder = "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/mesh/arm/pointcloud/";
+    string meshFolder = "../../../src/darias_intelcamera/mesh/arm/pointcloud/";
 
 };
 

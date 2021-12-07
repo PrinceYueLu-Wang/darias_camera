@@ -56,6 +56,8 @@ public:
 
         pub_pointcloud_filtered = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/filtered/pointcloud", 1);
 
+        pub_array3d_filtered = n_.advertise<darias_intelcamera::maplist>("/camera_visual/filtered/point3d", 1);
+
         sub_pointcloud_all = n_.subscribe("/camera_visual/raw/pointcloud_voxel", 1, &MapGeneration::callback_cam, this);
         sub_pointcloud_arm = n_.subscribe("/camera_visual/mesh/rightArm", 1, &MapGeneration::callback_arm, this);
     }
@@ -149,6 +151,28 @@ public:
         
         pub_octomap_filtered.publish(octomapMsg);
 
+        //self-defined msgs
+        int tree_depth = 15;
+
+        darias_intelcamera::maplist pointsMsg;
+        
+        pointsMsg.sphere_radius = octree_res*pow(2.0,16-tree_depth);
+
+        int cube_num = 0;
+        
+        for (auto iter = tree.begin(15), end = tree.end(); iter != end; ++iter)
+        {
+        pointsMsg.center_x.push_back(iter.getX());
+        pointsMsg.center_y.push_back(iter.getY());
+        pointsMsg.center_z.push_back(iter.getZ());
+
+        ++cube_num;
+        }
+
+        pointsMsg.cube_number =cube_num;
+
+        pub_array3d_filtered.publish(pointsMsg);
+
         }
 
     }
@@ -158,6 +182,8 @@ private:
 
     ros::Publisher pub_octomap_filtered;
     ros::Publisher pub_pointcloud_filtered;
+
+    ros::Publisher pub_array3d_filtered;
 
     ros::Subscriber sub_pointcloud_all;
     ros::Subscriber sub_pointcloud_arm;
