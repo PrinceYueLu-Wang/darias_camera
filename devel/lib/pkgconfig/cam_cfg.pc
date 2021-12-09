@@ -1,0 +1,8 @@
+prefix=/home/yifei/Desktop/visual/darias_camera/devel
+
+Name: cam_cfg
+Description: Description of cam_cfg
+Version: 0.0.0
+Cflags: -I/home/yifei/Desktop/visual/darias_camera/devel/include
+Libs: -L${prefix}/lib 
+Requires: 
