@@ -922,6 +922,19 @@ actionlib_generate_messages_nodejs/fast:
 .PHONY : actionlib_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named cam_img2pcdtree_2
+
+# Build rule for target.
+cam_img2pcdtree_2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cam_img2pcdtree_2
+.PHONY : cam_img2pcdtree_2
+
+# fast build rule for target.
+cam_img2pcdtree_2/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build
+.PHONY : cam_img2pcdtree_2/fast
+
+#=============================================================================
 # Target rules for targets named cam_img2pcdtree
 
 # Build rule for target.
@@ -1219,6 +1232,19 @@ octomap_msgs_generate_messages_lisp: cmake_check_build_system
 octomap_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build.make darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build
 .PHONY : octomap_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named cam_pcd2map_2
+
+# Build rule for target.
+cam_pcd2map_2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cam_pcd2map_2
+.PHONY : cam_pcd2map_2
+
+# fast build rule for target.
+cam_pcd2map_2/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build
+.PHONY : cam_pcd2map_2/fast
 
 #=============================================================================
 # Target rules for targets named tf_generate_messages_lisp
@@ -1694,6 +1720,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_nodejs"
+	@echo "... cam_img2pcdtree_2"
 	@echo "... cam_img2pcdtree"
 	@echo "... jointStates_publisher"
 	@echo "... darias_intelcamera_genpy"
@@ -1717,6 +1744,7 @@ help:
 	@echo "... tf_generate_messages_py"
 	@echo "... tf_generate_messages_nodejs"
 	@echo "... octomap_msgs_generate_messages_lisp"
+	@echo "... cam_pcd2map_2"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_cpp"

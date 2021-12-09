@@ -101,7 +101,7 @@ public:
 
     void armCompentTransfer(int link_idx){
         try
-        {   
+        {
 
             string link_name = string("R_")+to_string(link_idx) +string("_link");
 
@@ -110,7 +110,6 @@ public:
             geometry_msgs::TransformStamped tf_link;
 
             tf_link = tfBuffer_.lookupTransform("world", link_name, ros::Time(0), ros::Duration(3.0));
-
 
             // tf to eigen
             Eigen::Matrix4f tf_in;
@@ -136,7 +135,6 @@ public:
 
             pcl::transformPointCloud(*pcd_rightarm_[link_idx-1], *pcd_rightarm_world_tmp, tf_out);
 
-
             // voxel grid
 
             pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
@@ -151,8 +149,6 @@ public:
 
             *pcd_rightarm_world_[link_idx-1] =  *pcd_voxel;
 
-
-
         }
         catch (tf2::TransformException &ex)
         {
@@ -163,6 +159,11 @@ public:
     }
 
     void armCompentJoin(){
+
+        ros::WallTime start_, end_;
+        double execution_time;
+
+        start_ = ros::WallTime::now();
 
         pcd_combined_ = pcl::PointCloud<pcl::PointXYZ>::Ptr(new pcl::PointCloud<pcl::PointXYZ>);
 
@@ -185,6 +186,11 @@ public:
         pcl::toROSMsg(*pcd_combined_, pcdMsg);
         pcdMsg.header.frame_id = "world";
         pub_rightArm_.publish(pcdMsg);
+
+        end_= ros::WallTime::now();
+        execution_time = (end_ - start_).toNSec() * 1e-6;
+        ROS_INFO_STREAM("Exectution all time (ms): " << execution_time); 
+
     }
 
 
