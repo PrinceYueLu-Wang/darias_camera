@@ -1,12 +1,12 @@
 TF
 
 ```
-
+roslaunch realsense2_description view_d435i_model.launch
 ```
 
 
 ```
- rosrun tf tf_echo camera_link camera_depth_opcal_frame
+ rosrun tf tf_echo camera_link camera_color_optical_frame
 
 ```
 
@@ -29,8 +29,7 @@ rosrun tf static_transform_publisher x y z qx qy qz qw frame_id child_frame_id  
 
 ```
 
-rosrun tf static_transform_publisher 0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100
-rosrun tf static_transform_publisher 0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100
+rosrun tf static_transform_publisher 0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_color_optical_frame 100
 
-
+<node pkg="tf" type="static_transform_publisher" name="camera_tf" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_color_optical_frame 100" />
 ```

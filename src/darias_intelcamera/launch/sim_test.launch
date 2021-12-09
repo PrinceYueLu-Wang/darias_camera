@@ -3,17 +3,14 @@
     <arg name="delay_time1" default="10.0" />
     <arg name="delay_time2" default="15.0" />  
 
-    <group ns="MapTransfer">
+    <param name="use_sim_time" value="true"/>
 
-        <node name="jointStates_publisher" pkg="darias_intelcamera" type="jointStates_publisher" />
-        
-    </group>
+    <node pkg="rosbag" type="play" name="rosbag" args="--clock -l /home/yifei/Desktop/visual/Nov29Pose1.bag"/>
+
 
     <!-- <group ns="RobotModel"> -->
 
     <include file="$(find darias_description)/launch/darias_description.launch" />
-    <node name="jointStates_publisher" pkg="darias_intelcamera" type="jointStates_publisher" />
-
 
     <!-- <group ns="TF_adjust"> -->
 
@@ -27,7 +24,9 @@
 
     </group>
 
-    <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="camera_tf_1" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_color_optical_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="camera_tf_2" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100" />
+
 
     <node name="cam_img2pcdtree" pkg="darias_intelcamera" type="cam_img2pcdtree" />
 

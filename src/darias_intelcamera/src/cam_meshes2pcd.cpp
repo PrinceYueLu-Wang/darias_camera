@@ -198,7 +198,7 @@ private:
     vector<string> rightArm_mesheFile = vector<string>(6);
     vector<string> leftArm_mesheFile = vector<string>(6);
 
-    string meshFolder = "../../../src/darias_intelcamera/mesh/arm/pointcloud/";
+    string meshFolder = "../mesh/arm/pointcloud/";
 
 };
 
