@@ -36,12 +36,15 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
-
+//boost
+#include <boost/filesystem.hpp>
 
 //msgs
 // #include "eigen.h"
 
 using namespace std;
+
+namespace fs = boost::filesystem;
 
 class MeshPCDPub
 {
@@ -49,6 +52,11 @@ class MeshPCDPub
 public:
     MeshPCDPub()
     {  
+        cppPath = fs::path(__FILE__);
+        pkgFolder = cppPath.parent_path().parent_path();
+        meshFolder_ = pkgFolder / "mesh/arm/pointcloud/";
+
+        string meshFolder = meshFolder_.string();
 
         // define ply pointcloud file location
         rightArm_mesheFile[0] = meshFolder+"R_1_link.ply";
@@ -198,7 +206,12 @@ private:
     vector<string> rightArm_mesheFile = vector<string>(6);
     vector<string> leftArm_mesheFile = vector<string>(6);
 
-    string meshFolder = "../mesh/arm/pointcloud/";
+    fs::path cppPath;
+    fs::path pkgFolder;
+    fs::path meshFolder_;
+
+
+    int pub_freq =30;
 
 };
 
@@ -208,7 +221,7 @@ int main(int argc, char **argv)
 
     MeshPCDPub pcd_pub;
 
-    ros::Rate loop_rate(30);
+    ros::Rate loop_rate(100);
 
     while (ros::ok())
     {

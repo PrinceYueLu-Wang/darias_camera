@@ -2,4 +2,4 @@
 source_root_dir = '/home/yifei/Desktop/visual/darias_camera/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/home/yifei/Desktop/RobotModel/devel;/opt/ros/melodic'.split(';') if '/home/yifei/Desktop/RobotModel/devel;/opt/ros/melodic' != '' else []
+underlay_workspaces = '/opt/ros/melodic'.split(';') if '/opt/ros/melodic' != '' else []

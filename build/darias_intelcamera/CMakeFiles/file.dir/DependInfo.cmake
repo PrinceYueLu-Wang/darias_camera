@@ -4,12 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/yifei/Desktop/visual/darias_camera/src/darias_intelcamera/src/cam_pcd2map.cpp" "/home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/cam_pcd2map.dir/src/cam_pcd2map.cpp.o"
+  "/home/yifei/Desktop/visual/darias_camera/src/darias_intelcamera/src/file.cpp" "/home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/file.dir/src/file.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "BOOST_ALL_NO_LIB"
+  "BOOST_SYSTEM_DYN_LINK"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
   "ROS_PACKAGE_NAME=\"darias_intelcamera\""

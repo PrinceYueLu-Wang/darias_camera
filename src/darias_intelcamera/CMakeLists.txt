@@ -30,11 +30,12 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf2_ros
-
   # visualization_msgs
   # OpenCV
   # pinocchio
 )
+find_package(Boost REQUIRED COMPONENTS system)
+
 
 # find_package(realsense2 REQUIRED)
 
@@ -42,14 +43,6 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-
-## Uncomment this if the package has a setup.py. This macro ensures
-## modules and global scripts declared therein get installed
-## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
-
-################################################
-## Declare ROS messages, services and actions ##
 ################################################
 
 ## To declare and build messages, services or actions from within this
@@ -159,6 +152,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${realsense2_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -181,6 +175,10 @@ add_dependencies(cam_pcd2map ${catkin_EXPORTED_TARGETS})
 add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
 target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
 add_dependencies(cam_meshes2pcd ${catkin_EXPORTED_TARGETS})
+
+# add_executable(file src/file.cpp)
+# target_link_libraries(file ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
 
 
 ## Add cmake target dependencies of the library

@@ -37,6 +37,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/libxml2"
   "/usr/include/jsoncpp"
   "/usr/include/tcl"
+  "/home/yifei/anaconda3/envs/light36/include"
   )
 
 # Targets to which this target links.

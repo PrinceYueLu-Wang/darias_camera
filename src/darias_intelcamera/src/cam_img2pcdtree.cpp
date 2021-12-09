@@ -64,7 +64,8 @@ public:
     }
 
     void callback(const sensor_msgs::PointCloud2::ConstPtr &msgs)
-    {
+    {   
+
 
         pcl::PCLPointCloud2 pointcloud_msg;
 
@@ -196,6 +197,8 @@ private:
     ros::Publisher pub_pcd;
 
     ros::Subscriber sub_;
+
+    int pub_freq = 30;
 };
 
 int main(int argc, char **argv)
