@@ -64,6 +64,8 @@ MapGeneration::MapGeneration (){
     pub_octmap_ = n_.advertise<octomap_msgs::Octomap>("/camera_visual/filtered/octomap", 1);
     pub_array3d_ = n_.advertise<darias_intelcamera::maplist>("/camera_visual/filtered/point3d", 1);
 
+    pub_palm_ = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/mesh/palm", 1);
+
     //filesystem
     cpppath_ = boost::filesystem::path(__FILE__);
     pkgfolder_ = cpppath_.parent_path().parent_path();
@@ -72,37 +74,39 @@ MapGeneration::MapGeneration (){
     string meshfolder = meshfolder_.string();
 
     // define ply pointcloud file location
-    rightarm_meshefile_[0] = meshfolder+"R_1_link.ply";
-    rightarm_meshefile_[1] = meshfolder+"R_2_link.ply";
-    rightarm_meshefile_[2] = meshfolder+"R_3_link.ply";
-    rightarm_meshefile_[3] = meshfolder+"R_4_link.ply";
-    rightarm_meshefile_[4] = meshfolder+"R_5_link.ply";
-    rightarm_meshefile_[5] = meshfolder+"R_6_link.ply";
+    rightarm_meshefile_.push_back(meshfolder+"R_1_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"R_2_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"R_3_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"R_4_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"R_5_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"R_6_link.ply");
+    rightarm_meshefile_.push_back(meshfolder+"righthandbase.ply");
+
+    rightarm_linknum_ = rightarm_meshefile_.size();
 
 
     // initialise  pointcloud pointer 
-    for (size_t i = 0; i < 6; ++i)
+    for (int i = 0; i < rightarm_linknum_; ++i)
     {   
-        cout<<i<<endl;
         init_ptr_.reset(new pcl::PointCloud<pcl::PointXYZ>);
         pcd_rightarm_.push_back(init_ptr_);
-        cout<<i<<endl;
     }
 
-    for (size_t i = 0; i < 6; ++i)
+    for (int i = 0; i < rightarm_linknum_; ++i)
     {   
-        cout<<i<<endl;
         init_ptr_.reset(new pcl::PointCloud<pcl::PointXYZ>);
         pcd_rightarm_world_.push_back(init_ptr_);
-        cout<<i<<endl;
     }
     // convert PLY into PCD
 
-    for (size_t i = 0; i < 6; ++i){
+    for (int i = 0; i < rightarm_linknum_; ++i){
 
         pcl::io::loadPLYFile<pcl::PointXYZ>(rightarm_meshefile_[i], *pcd_rightarm_[i]);
 
         cout<<pcd_rightarm_[i]->size()<<endl;
+
+        cout<<rightarm_meshefile_[i]<< "done!"<<endl;
+
     }
 
 }
@@ -113,12 +117,15 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
         // sensor::PointCloud2 msg -> pcl::PointCloud2 msg
         // pcl::PointCloud2 msg -> pcl::pointcloud
         // pcl::fromPCLPointCloud2 (const pcl::PCLPointCloud2& msg, pcl::PointCloud
-        pcl::PCLPointCloud2 pointcloud_msg;
-        pcl_conversions::toPCL(*cam_msgs, pointcloud_msg);
-        pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw(new pcl::PointCloud<pcl::PointXYZ>);
-        pcl::fromPCLPointCloud2(pointcloud_msg, *pointcloud_raw);
 
-        timeprofiler_.stop(1);
+        // pcl::PCLPointCloud2 pointcloud_msg;
+        // pcl_conversions::toPCL(*cam_msgs, pointcloud_msg);
+        // pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw(new pcl::PointCloud<pcl::PointXYZ>);
+        // pcl::fromPCLPointCloud2(pointcloud_msg, *pointcloud_raw);
+
+        pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw(new pcl::PointCloud<pcl::PointXYZ>);
+        pcl::fromROSMsg(*cam_msgs, *pointcloud_raw);
+
 
         //grid voxel
         pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
@@ -126,8 +133,6 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
         voxel_grid.setLeafSize (0.02f, 0.02f, 0.02f);
         pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_raw(new pcl::PointCloud<pcl::PointXYZ>);
         voxel_grid.filter (*pcd_voxel_raw);
-
-        timeprofiler_.stop(2);
 
         isfinished_camera = false;
         isfinished_meshes = false;
@@ -137,14 +142,13 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
         try{   
 
             geometry_msgs::TransformStamped tf_world2camera;
+
             tf_world2camera = tfBuffer_cam_.lookupTransform("world", "camera_depth_optical_frame", ros::Time(0), ros::Duration(3.0));
             Eigen::Matrix4f tf_eigen;
             pcl_ros::transformAsMatrix(tf_world2camera.transform, tf_eigen);
             // pcd to world frame
             pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_world(new pcl::PointCloud<pcl::PointXYZ>);
             pcl::transformPointCloud(*pcd_voxel_raw, *pcd_voxel_world, tf_eigen);
-
-            timeprofiler_.stop(3);
 
             pcl::PassThrough<pcl::PointXYZ> passthrough;  //设置滤波器对象
             passthrough.setInputCloud(pcd_voxel_world);//输入点云
@@ -160,20 +164,25 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
             ROS_WARN("%s", ex.what());
         }
 
-        timeprofiler_.stop(4);
-
         // mesh pointclouds
 
         int countflag_armlink = 0;
 
-        for(size_t i = 1 ; i <=6 ; ++i)
-        {
-            
-            string link_name = string("R_")+to_string(i) +string("_link");
+        for(size_t i = 1 ; i <=rightarm_linknum_ ; ++i)
+        {   
+            string link_name;
+            if (i<=6){
+                link_name = string("R_")+to_string(i) +string("_link");
+            }else{
+                link_name = "R_palm";
+            }
+
+
             geometry_msgs::TransformStamped tf_link;
             try{
             tf_link = tfBuffer_link_.lookupTransform("world", link_name, ros::Time(0), ros::Duration(3.0));
             // tf to eigen
+
             Eigen::Matrix4f tf_in;
             pcl_ros::transformAsMatrix(tf_link.transform, tf_in);
             Eigen::Matrix4f tf_trans;
@@ -198,24 +207,27 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
             voxel_grid.filter (*pcd_link_voxel_world);
             *pcd_rightarm_world_[i-1] =  *pcd_link_voxel_world;
 
-            
+            if(i == 7){
+                sensor_msgs::PointCloud2::Ptr msg_palm(new sensor_msgs::PointCloud2);
+                pcl::toROSMsg(*pcd_link_world_tmp, *msg_palm);
+                msg_palm->header.frame_id = "world";
+                pub_palm_.publish(*msg_palm);
+            }
+
             ++countflag_armlink;
             }
             catch (tf2::TransformException &ex){
                 ROS_WARN("%s", ex.what());
             }
         }
-        timeprofiler_.stop(5);
 
         pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_linkcombined(new pcl::PointCloud<pcl::PointXYZ>);
-        if (countflag_armlink == 6){             
+        if (countflag_armlink == rightarm_linknum_){             
             isfinished_meshes = true;
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[0];
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[1];
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[2];
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[3];
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[4];
-            *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[5];
+
+            for (int i = 0; i< rightarm_linknum_; ++i){
+                *pcd_linkcombined = *pcd_linkcombined+*pcd_rightarm_world_[i];
+            }
         }
 
 
@@ -240,14 +252,13 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
                     searchPoint.z = pcd_voxel_filtered->points[i].z;
                     if (kdtree.nearestKSearch(searchPoint, K, pointIdxNKNSearch, pointNKNSquaredDistance) > 0)
                     {
-                        if (pointNKNSquaredDistance[0] < 0.03)
+                        if (pointNKNSquaredDistance[0] < OVERLAP_DIST)
                         { 
                             // distance < 0.03 treat as overlapped points
                             indices_overlap->indices.push_back(i);
                         }
                     }
                 }
-                timeprofiler_.stop(6);
 
                 //eliminate overlapped points in camera_pointcloud
                 pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_final(new  pcl::PointCloud<pcl::PointXYZ>);
@@ -256,8 +267,6 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
                 extract.setIndices(indices_overlap);
                 extract.setNegative(true);
                 extract.filter(*pcd_final);
-
-                timeprofiler_.stop(7);
 
                 //octomap filtered 
 
@@ -271,8 +280,6 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
                 }
 
                 tree.updateInnerOccupancy();
-
-                timeprofiler_.stop(8);
 
                 //publisher!!
 
@@ -300,8 +307,6 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
                 msg_octomap.header.frame_id = "world";
                 pub_octmap_.publish(msg_octomap);
 
-                timeprofiler_.stop(9);
-
                 //self-defined msgs
                 int tree_depth = 15;
                 darias_intelcamera::maplist msg_3darray;
@@ -317,7 +322,7 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs 
                 msg_3darray.cube_number =cube_num;
                 pub_array3d_.publish(msg_3darray);
 
-                timeprofiler_.stop(10);
+                // timeprofiler_.stop(1);
 
 
                     }

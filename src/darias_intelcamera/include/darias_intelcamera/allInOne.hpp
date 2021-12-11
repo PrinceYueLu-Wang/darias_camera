@@ -65,6 +65,7 @@ class MapGeneration
     ros::Publisher pub_octmap_;
     ros::Publisher pub_pcdmap_;
     ros::Publisher pub_array3d_;
+    ros::Publisher pub_palm_;
 
     //subscriber
     ros::Subscriber sub_pcd_camera_;
@@ -83,8 +84,11 @@ class MapGeneration
     pcl::PointCloud<pcl::PointXYZ>::Ptr init_ptr_;
 
     //mesh path string
-    std::vector<std::string> rightarm_meshefile_ = std::vector<std::string>(6);
-    std::vector<std::string> leftarm_meshefile_ = std::vector<std::string>(6);
+    std::vector<std::string> rightarm_meshefile_;
+    std::vector<std::string> leftarm_meshefile_;
+
+    int rightarm_linknum_;
+    int lefttarm_linknum_;
 
     // filesystem
     boost::filesystem::path cpppath_;
@@ -102,6 +106,8 @@ class MapGeneration
     bool isfinished_pcdmap = false;
     bool isfinished_3darry = false;
     bool enable_octomap = true;
+
+    double OVERLAP_DIST = 0.01;
 
 
     public:

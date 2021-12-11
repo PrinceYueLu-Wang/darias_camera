@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name = "dlr_hit_2_right_hand"
+ <robot name = "dlr_hit_2_right_hand"
             xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find darias_description)/urdf/finger.urdf.xacro"/>

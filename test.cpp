@@ -1,17 +1,20 @@
-# include <iostream>
+#include<vector>
+#include<iostream>
 
 using namespace std;
 
-int main(int argc, char** argv){
+int main(int argc, char **argv){
 
-   int x[2] ={100,200};
+    vector<int> a;
 
-   int *p;
+    a.push_back(1);
+    a.push_back(2);
+    a.push_back(3);
 
-   p = x;
+    int b =1;
 
-   cout<< ++*p<<endl;
-   cout<< *p<<endl;
+    cout<<a[b]<<endl;
 
-   return 0;
+
+    return 0;
 }

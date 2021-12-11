@@ -4,8 +4,8 @@
     <arg name="delay_time2" default="15.0" />  
 
     <param name="use_sim_time" value="true"/>
-
-    <node pkg="rosbag" type="play" name="rosbag" args="--clock -l /home/yifei/Desktop/visual/Nov29Pose2.bag"/>
+    
+    <node pkg="rosbag" type="play" name="rosbag" args="--clock -l /home/yifei/Desktop/visual/Nov29Pose1.bag"/>
 
     <include file="$(find darias_description)/launch/darias_description.launch" />
 
@@ -23,6 +23,6 @@
     <node pkg="tf" type="static_transform_publisher" name="camera_tf_2" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100" />
 
     
-    <!-- <node name="allInOne" pkg="darias_intelcamera" type="allInOne" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/> -->
+    <node name="allInOne" pkg="darias_intelcamera" type="allInOne" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/>
 
 </launch>
