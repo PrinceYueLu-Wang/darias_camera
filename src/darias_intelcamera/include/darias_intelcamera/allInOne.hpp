@@ -36,6 +36,20 @@
 //msgs
 #include "darias_intelcamera/maplist.h"
 
+class TimeProfiler{
+    private:
+
+    ros::WallTime tic_;
+    ros::WallTime toc_;
+
+    public:
+    TimeProfiler() = default;
+
+    void begin();
+    void stop(int);
+
+};
+
 class MapGeneration
 {
     private:
@@ -50,7 +64,6 @@ class MapGeneration
 
     ros::Publisher pub_octmap_;
     ros::Publisher pub_pcdmap_;
-
     ros::Publisher pub_array3d_;
 
     //subscriber
@@ -60,11 +73,12 @@ class MapGeneration
     tf2_ros::Buffer tfBuffer_cam_;
     tf2_ros::TransformListener *tfListener_cam_;
 
+    tf2_ros::Buffer tfBuffer_link_;
+    tf2_ros::TransformListener *tfListener_link_;
+
     // pcd
     std::vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_rightarm_;
     std::vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> pcd_rightarm_world_;
-    
-    pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_combined_;
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr init_ptr_;
 
@@ -80,11 +94,20 @@ class MapGeneration
     //others
     int pub_freq = 30;
     
-    ros::WallTime start_, end_;
-    double execution_time;
+    TimeProfiler timeprofiler_;
+
+    bool isfinished_camera = false;
+    bool isfinished_meshes = false;
+    bool isfinished_octomap = false;
+    bool isfinished_pcdmap = false;
+    bool isfinished_3darry = false;
+    bool enable_octomap = true;
+
 
     public:
 
     MapGeneration();
     void CallBack(const sensor_msgs::PointCloud2::ConstPtr &msgs );
 };
+
+
