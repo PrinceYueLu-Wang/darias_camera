@@ -102,6 +102,7 @@
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/list_install_components.dir
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/edit_cache.dir
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/test.dir
+/home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/allInOne.dir
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir
 /home/yifei/Desktop/visual/darias_camera/build/darias_intelcamera/CMakeFiles/jointStates_publisher.dir

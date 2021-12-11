@@ -922,6 +922,19 @@ actionlib_generate_messages_nodejs/fast:
 .PHONY : actionlib_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named allInOne
+
+# Build rule for target.
+allInOne: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allInOne
+.PHONY : allInOne
+
+# fast build rule for target.
+allInOne/fast:
+	$(MAKE) -f darias_intelcamera/CMakeFiles/allInOne.dir/build.make darias_intelcamera/CMakeFiles/allInOne.dir/build
+.PHONY : allInOne/fast
+
+#=============================================================================
 # Target rules for targets named cam_img2pcdtree_2
 
 # Build rule for target.
@@ -1720,6 +1733,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_nodejs"
+	@echo "... allInOne"
 	@echo "... cam_img2pcdtree_2"
 	@echo "... cam_img2pcdtree"
 	@echo "... jointStates_publisher"

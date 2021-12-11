@@ -184,6 +184,10 @@ add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
 target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
 add_dependencies(cam_meshes2pcd ${catkin_EXPORTED_TARGETS})
 
+add_executable(allInOne src/allInOne.cpp)
+target_link_libraries(allInOne ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_dependencies(allInOne ${catkin_EXPORTED_TARGETS})
+
 # add_executable(file src/file.cpp)
 # target_link_libraries(file ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 

@@ -103,7 +103,7 @@ public:
             searchPoint.z = pcd_cameraPcd->points[i].z;
             if (kdtree.nearestKSearch(searchPoint, K, pointIdxNKNSearch, pointNKNSquaredDistance) > 0)
             {
-                if (pointNKNSquaredDistance[0] < 0.01)
+                if (pointNKNSquaredDistance[0] < 0.03)
                 { 
                     // distance < 0.05 treat as overlapped points
                     indices_overlap->indices.push_back(i);

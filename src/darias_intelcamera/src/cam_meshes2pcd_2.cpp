@@ -52,6 +52,7 @@ class MeshPCDPub
 public:
     MeshPCDPub()
     {  
+        init_ptr = new pcl::PointCloud<pcl::PointXYZ>;
         cppPath = fs::path(__FILE__);
         pkgFolder = cppPath.parent_path().parent_path();
         meshFolder_ = pkgFolder / "mesh/arm/pointcloud/";

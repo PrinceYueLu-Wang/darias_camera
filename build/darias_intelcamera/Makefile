@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+darias_intelcamera/CMakeFiles/allInOne.dir/rule:
+	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/allInOne.dir/rule
+.PHONY : darias_intelcamera/CMakeFiles/allInOne.dir/rule
+
+# Convenience name for target.
+allInOne: darias_intelcamera/CMakeFiles/allInOne.dir/rule
+
+.PHONY : allInOne
+
+# fast build rule for target.
+allInOne/fast:
+	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/allInOne.dir/build.make darias_intelcamera/CMakeFiles/allInOne.dir/build
+.PHONY : allInOne/fast
+
+# Convenience name for target.
 darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule
@@ -1007,6 +1022,33 @@ topic_tools_generate_messages_nodejs/fast:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build.make darias_intelcamera/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build
 .PHONY : topic_tools_generate_messages_nodejs/fast
 
+src/allInOne.o: src/allInOne.cpp.o
+
+.PHONY : src/allInOne.o
+
+# target to build an object file
+src/allInOne.cpp.o:
+	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/allInOne.dir/build.make darias_intelcamera/CMakeFiles/allInOne.dir/src/allInOne.cpp.o
+.PHONY : src/allInOne.cpp.o
+
+src/allInOne.i: src/allInOne.cpp.i
+
+.PHONY : src/allInOne.i
+
+# target to preprocess a source file
+src/allInOne.cpp.i:
+	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/allInOne.dir/build.make darias_intelcamera/CMakeFiles/allInOne.dir/src/allInOne.cpp.i
+.PHONY : src/allInOne.cpp.i
+
+src/allInOne.s: src/allInOne.cpp.s
+
+.PHONY : src/allInOne.s
+
+# target to generate assembly for a file
+src/allInOne.cpp.s:
+	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/allInOne.dir/build.make darias_intelcamera/CMakeFiles/allInOne.dir/src/allInOne.cpp.s
+.PHONY : src/allInOne.cpp.s
+
 src/cam_img2pcdtree.o: src/cam_img2pcdtree.cpp.o
 
 .PHONY : src/cam_img2pcdtree.o
@@ -1179,6 +1221,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... allInOne"
 	@echo "... cam_img2pcdtree_2"
 	@echo "... cam_img2pcdtree"
 	@echo "... jointStates_publisher"
@@ -1238,6 +1281,9 @@ help:
 	@echo "... topic_tools_generate_messages_eus"
 	@echo "... pcl_ros_gencfg"
 	@echo "... topic_tools_generate_messages_nodejs"
+	@echo "... src/allInOne.o"
+	@echo "... src/allInOne.i"
+	@echo "... src/allInOne.s"
 	@echo "... src/cam_img2pcdtree.o"
 	@echo "... src/cam_img2pcdtree.i"
 	@echo "... src/cam_img2pcdtree.s"

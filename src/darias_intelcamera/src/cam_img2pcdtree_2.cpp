@@ -67,8 +67,8 @@ public:
     {   
 
 
-        ros::WallTime start_, end_;
-        double execution_time;
+        // ros::WallTime start_, end_;
+        // double execution_time;
 
         // double execution_time = (end_ - start_).toNSec() * 1e-6;
 
@@ -100,22 +100,6 @@ public:
         pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw_voxel(new pcl::PointCloud<pcl::PointXYZ>);
         voxel_grid.filter (*pointcloud_raw_voxel);
 
-        pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_filtered(new pcl::PointCloud<pcl::PointXYZ>);
-        pcl::PassThrough<pcl::PointXYZ> passthrough;  //设置滤波器对象
-        passthrough.setInputCloud(pointcloud_raw_voxel);//输入点云
-        passthrough.setFilterFieldName("z");//对z轴进行操作，也可以对"x"和"y"轴进行操作    
-        passthrough.setFilterLimits(0.5, 3.0);//设置直通滤波器操作范围
-        passthrough.setFilterLimitsNegative(false);//true表示保留范围内，false表示保留范围外
-        passthrough.filter(*pcd_voxel_filtered);//执行滤波，过滤结果保存在 cloud_after_PassThrough
-
-        
-        // sensor_msgs::PointCloud2 pcd_voxelMsg;
-        // pcl::toROSMsg(*pcd_voxel_filtered, pcd_voxelMsg);
-        // pcd_voxelMsg.header.frame_id = "world";
-
-        // pub_pcd_voxel.publish(pcd_voxelMsg);
-
-
         try
         {   
 
@@ -126,18 +110,20 @@ public:
             pcl_ros::transformAsMatrix(tf_world2camera.transform, tf_eigen);
 
 
-            // pcd to world frame
-            start_ = ros::WallTime::now();
+            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_raw_world(new pcl::PointCloud<pcl::PointXYZ>);
 
+            pcl::transformPointCloud(*pointcloud_raw_voxel, *pcd_voxel_raw_world, tf_eigen);
+
+            
             pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_filtered_world(new pcl::PointCloud<pcl::PointXYZ>);
+            pcl::PassThrough<pcl::PointXYZ> passthrough;  //设置滤波器对象
+            passthrough.setInputCloud(pcd_voxel_raw_world);//输入点云
+            passthrough.setFilterFieldName("z");//对z轴进行操作，也可以对"x"和"y"轴进行操作    
+            passthrough.setFilterLimits(0.5, 3.0);//设置直通滤波器操作范围
+            passthrough.setFilterLimitsNegative(false);//true表示保留范围内，false表示保留范围外
+            passthrough.filter(*pcd_voxel_filtered_world);//执行滤波，过滤结果保存在 cloud_after_PassThrough
 
-            pcl::transformPointCloud(*pcd_voxel_filtered, *pcd_voxel_filtered_world, tf_eigen);
 
-            end_ = ros::WallTime::now();
-            execution_time = (end_ - start_).toNSec() * 1e-6;
-            ROS_INFO_STREAM("Exectution a time (ms): " << execution_time);
-
-            // pcd to pcdMsgs
 
             sensor_msgs::PointCloud2 pcdMsg;
 
