@@ -1,8 +1,0 @@
-prefix=/home/yifei/Desktop/visual/darias_camera/install
-
-Name: cam_cfg
-Description: Description of cam_cfg
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 

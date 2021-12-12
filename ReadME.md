@@ -103,3 +103,7 @@ class Node(object):
             rospy.loginfo("msg type {} points!".format(type(msg.center_x)) )
             self.rate.sleep()
 ```
+### Build
+
+before `catkin_make` source rospkg `darias_intelcamera` to ensure catkin could find it
+  - `$ source xxx/darias_camera/devel/setup.bash`

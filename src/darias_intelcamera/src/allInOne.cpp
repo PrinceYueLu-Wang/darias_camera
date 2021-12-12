@@ -227,13 +227,13 @@ void MapGeneration::CallBack(const sensor_msgs::PointCloud2::ConstPtr &cam_msgs)
             voxel_grid.filter(*pcd_link_voxel_world);
             *pcd_rightarm_world_[i - 1] = *pcd_link_voxel_world;
 
-            if (i == 7)
-            {
-                sensor_msgs::PointCloud2::Ptr msg_palm(new sensor_msgs::PointCloud2);
-                pcl::toROSMsg(*pcd_link_world_tmp, *msg_palm);
-                msg_palm->header.frame_id = "world";
-                pub_palm_.publish(*msg_palm);
-            }
+            // if (i == 7)
+            // {
+            //     sensor_msgs::PointCloud2::Ptr msg_palm(new sensor_msgs::PointCloud2);
+            //     pcl::toROSMsg(*pcd_link_world_tmp, *msg_palm);
+            //     msg_palm->header.frame_id = "world";
+            //     pub_palm_.publish(*msg_palm);
+            // }
 
             ++countflag_armlink;
             }

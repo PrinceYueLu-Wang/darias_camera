@@ -1,8 +1,0 @@
-prefix=/home/yifei/Desktop/visual/darias_camera/devel
-
-Name: darias_description
-Description: Description of darias_description
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

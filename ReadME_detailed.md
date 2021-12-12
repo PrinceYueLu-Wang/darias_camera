@@ -101,9 +101,22 @@ process:
 - apply an octree to it
 - publish an 3D-array of the octree(obstacles)
 
-## Description for ROStopics
+---
+## Description for ROStopics for allInOne node
+
+
+| topic name                                   | msg type                    | description                             |
+| -------------------------------------------- | --------------------------- | --------------------------------------- |
+| /camera_visual/raw/pointcloud_voxel_filtered | sensor_msgs::PointCloud2    | simpflied pcd from camera via grid voxl |
+| /camera_visual/mesh/pointcloud_rightArm      | sensor_msgs::PointCloud2    | simpflied pcd from robot arm links      |
+| /camera_visual/filtered/pointcloud           | sensor_msgs::PointCloud2    | final pcd                               |
+| /camera_visual/filtered/octomap              | octomap_msgs::Octomap       | final octomap                           |
+| /camera_visual/filtered/point3d              | darias_intelcamera::maplist | final 3d points array                   |
 
 ---
+
+## Description for ROStopics for three nodes
+
 
 | topic name                          | msg tpye                    | rosnode         | description                                               |
 | ----------------------------------- | --------------------------- | --------------- | --------------------------------------------------------- |

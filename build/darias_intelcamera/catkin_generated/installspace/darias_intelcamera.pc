@@ -1,8 +1,0 @@
-prefix=/home/yifei/Desktop/visual/darias_camera/install
-
-Name: darias_intelcamera
-Description: Description of darias_intelcamera
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: roscpp sensor_msgs std_msgs tf2_ros message_runtime

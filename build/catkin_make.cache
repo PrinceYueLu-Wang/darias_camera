@@ -1,2 +1,0 @@
-cam_cfg:darias_description:darias_intelcamera
--DCATKIN_DEVEL_PREFIX=/home/yifei/Desktop/visual/darias_camera/devel -DCMAKE_INSTALL_PREFIX=/home/yifei/Desktop/visual/darias_camera/install -G Unix Makefiles

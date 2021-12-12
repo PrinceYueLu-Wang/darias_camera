@@ -25,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: pointcloud_camera_voxel
+    SyncSource: pointcloud_mesh
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -455,10 +455,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6447974443435669
+      Pitch: 0.7997972965240479
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.04540017992258072
+      Yaw: 0.08040018379688263
     Saved: ~
 Window Geometry:
   Displays:
