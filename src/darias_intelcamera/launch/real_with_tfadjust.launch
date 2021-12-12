@@ -1,0 +1,56 @@
+<launch>
+    
+    <arg name="delay_time1" default="10.0" />
+    <arg name="delay_time2" default="15.0" /> 
+    
+    <group ns="camera">
+        <arg name="serial_no" default="" />
+        <arg name="json_file_path" default="" />
+        <arg name="camera" default="camera" />
+
+        <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+            <arg name="serial_no" value="$(arg serial_no)" />
+            <arg name="json_file_path" value="$(arg json_file_path)" />
+            <arg name="depth_width" value="640" />
+            <arg name="depth_height" value="480" />
+            <arg name="depth_fps" value="30" />
+            <arg name="align_depth" value="true" />
+
+            <arg name="color_width" value="640" />
+            <arg name="color_height" value="480" />
+            <arg name="color_fps" value="30" />
+
+            <arg name="enable_depth" value="true" />
+            <arg name="enable_color" value="true" />
+            <arg name="enable_infra1" value="true" />
+            <arg name="enable_infra2" value="true" />
+            <arg name="enable_fisheye" value="false" />
+            <arg name="enable_gyro" value="false" />
+            <arg name="enable_accel" value="false" />
+            
+            <arg name="filters" value="disparity,temporal,spatial" />
+            <arg name="enable_pointcloud" value="true" />
+            <arg name="enable_sync" value="true" />
+            <arg name="tf_prefix" value="$(arg camera)" />
+            <arg name="initial_reset" value="false" />
+        </include>
+
+    </group>
+
+    <!-- <group ns="TF_adjust"> -->
+
+    <node name="tf_ADJUST" pkg="cam_cfg" type="tf_ADJUST" />
+    <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+    
+
+    <node name="cam_img2pcdtree" pkg="darias_intelcamera" type="cam_img2pcdtree" />
+
+    <!-- need 10 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_meshes2pcd" pkg="darias_intelcamera" type="cam_meshes2pcd" launch-prefix="bash -c 'sleep $(arg delay_time1); $0 $@' "/>
+
+    <!-- need 15 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_pcd2map" pkg="darias_intelcamera" type="cam_pcd2map" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/>
+    <!-- launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " /> -->
+
+</launch>

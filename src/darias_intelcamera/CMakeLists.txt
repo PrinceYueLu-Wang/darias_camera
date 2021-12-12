@@ -7,30 +7,42 @@ project(darias_intelcamera)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
+
+
+# set(OpenCV_DIR /home/ias/Documents/yifei/package/build)
+# set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
+# set(pinocchio_DIR /opt/ros/noetic/share/cmake/pinocchio)
+
+
+
 find_package(catkin REQUIRED COMPONENTS
   octomap_msgs
   octomap_ros
+
   pcl_conversions
   pcl_ros
   pcl_msgs
+
   roscpp
   rospy
+
   sensor_msgs
   std_msgs
   tf2_ros
+  # visualization_msgs
+  # OpenCV
+  # pinocchio
 )
+find_package(Boost REQUIRED COMPONENTS system)
+
+
+# find_package(realsense2 REQUIRED)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-
-## Uncomment this if the package has a setup.py. This macro ensures
-## modules and global scripts declared therein get installed
-## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
-
-################################################
-## Declare ROS messages, services and actions ##
 ################################################
 
 ## To declare and build messages, services or actions from within this
@@ -64,6 +76,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   maplist.msg
+  joystick.msg
 
 )
 
@@ -136,14 +149,41 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
+  ${realsense2_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/darias_intelcamera.cpp
 # )
+
+
+add_executable(jointStates_publisher src/jointStates_publisher.cpp)
+target_link_libraries(jointStates_publisher ${catkin_LIBRARIES})
+
+add_executable(cam_img2pcdtree src/cam_img2pcdtree.cpp)
+target_link_libraries(cam_img2pcdtree ${catkin_LIBRARIES})
+add_dependencies(cam_img2pcdtree ${catkin_EXPORTED_TARGETS})
+
+add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
+target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
+add_dependencies(cam_meshes2pcd ${catkin_EXPORTED_TARGETS})
+
+add_executable(cam_pcd2map src/cam_pcd2map.cpp)
+target_link_libraries(cam_pcd2map ${catkin_LIBRARIES})
+add_dependencies(cam_pcd2map ${catkin_EXPORTED_TARGETS})
+
+add_executable(allInOne src/allInOne.cpp)
+target_link_libraries(allInOne ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_dependencies(allInOne ${catkin_EXPORTED_TARGETS})
+
+# add_executable(file src/file.cpp)
+# target_link_libraries(file ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -183,6 +223,11 @@ include_directories(
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+
+
+catkin_install_python(PROGRAMS scripts/joystick.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html

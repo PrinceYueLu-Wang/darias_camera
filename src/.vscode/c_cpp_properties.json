@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/ias/Desktop/thesis/code/ros_camera/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/ias/Desktop/thesis/code/ros_camera/src/darias_intelcamera/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

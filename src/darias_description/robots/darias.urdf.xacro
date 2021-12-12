@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot name="darias" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+  <xacro:include filename="$(find darias_description)/urdf/base_darias.urdf.xacro"/>
+  <xacro:include filename="$(find darias_description)/urdf/kuka_lwr_arm.urdf.xacro"/> 
+  <xacro:include filename="$(find darias_description)/urdf/right_hand.urdf.xacro"/>
+  <xacro:include filename="$(find darias_description)/urdf/left_hand.urdf.xacro"/>
+  <xacro:include filename="$(find darias_description)/urdf/util_defs.xml"/>
+
+  <!-- the mass values and inertia may not be completly correct as the moment so this model should just be used as a kinematic one now-->
+
+  <material name="DarkGrey"><color rgba="0.3 0.3 0.3 1.0"/></material>
+  <material name="Black"><color rgba="0 0 0 1.0"/></material>
+  <material name="Grey"><color rgba="0.7 0.7 0.7 1.0"/></material>
+  <material name="Blue"><color rgba="0.0 0.0 0.8 1.0"/></material>
+  <material name="HandGray"><color rgba="0.953 0.996 0.694 1.0"/></material>
+
+  <xacro:property name="M_PI" value="3.1415926535897931"/>
+<!--  <xacro:property name="M_PI" value="0."/>-->
+
+  <!-- offset values for left and right arm, triangle forms 60 degree, offset over tabel: offset from base top: -->
+  <xacro:property name="base_size_z" value="1.5"/>
+
+  <xacro:arg name="cal_base_to_left_arm_x" default="-0.11"/>
+  <xacro:arg name="cal_base_to_left_arm_y" default="0.06"/>
+  <xacro:arg name="cal_base_to_left_arm_z" default="0.193"/> <!-- not used now need to measure offset-->
+  <xacro:arg name="cal_base_to_left_arm_roll" default="1.570796"/>
+  <xacro:arg name="cal_base_to_left_arm_pitch" default="1.570796"/>
+  <xacro:arg name="cal_base_to_left_arm_yaw" default="2.617993878"/>
+
+  <xacro:arg name="cal_base_to_right_arm_x" default="-0.11"/>
+  <xacro:arg name="cal_base_to_right_arm_y" default="-0.06"/>
+  <xacro:arg name="cal_base_to_right_arm_z" default="0.193"/> <!-- not used now-->
+  <xacro:arg name="cal_base_to_right_arm_roll" default="1.570796"/>
+  <xacro:arg name="cal_base_to_right_arm_pitch" default="-1.570796"/>
+  <xacro:arg name="cal_base_to_right_arm_yaw" default="0.523598776"/>
+  
+  <!-- Darias base (basically just a box on which the arms are mounted on) -->
+  <xacro:darias_base name="darias">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:darias_base>
+
+  <!-- Darias right arm -->  
+  <xacro:kuka_lwr_arm parent="darias" name="R" right="-1" tool_name="_angle">
+    <origin xyz="$(arg cal_base_to_right_arm_x) $(arg cal_base_to_right_arm_y) $(arg cal_base_to_right_arm_z)"
+            rpy="$(arg cal_base_to_right_arm_roll) $(arg cal_base_to_right_arm_pitch) $(arg cal_base_to_right_arm_yaw)"/>
+  </xacro:kuka_lwr_arm>
+
+  <!-- Darias left arm -->
+  <xacro:kuka_lwr_arm parent="darias" name="L" right="1" tool_name="_angle">
+    <origin xyz="$(arg cal_base_to_left_arm_x) $(arg cal_base_to_left_arm_y) $(arg cal_base_to_left_arm_z)"
+            rpy="$(arg cal_base_to_left_arm_roll) $(arg cal_base_to_left_arm_pitch) $(arg cal_base_to_left_arm_yaw)"/>
+  </xacro:kuka_lwr_arm>
+
+ <!-- right Hand of darias -->
+ <xacro:dlr_hit_2_right_hand name = "R" parent = "R_endeffector_link" arm_dir= "right">
+    <origin xyz="0.0 0 0" rpy="0 0 -1.57"/>
+  </xacro:dlr_hit_2_right_hand>
+
+ <!-- left Hand of darias -->
+ <xacro:dlr_hit_2_left_hand name = "L" parent = "L_endeffector_link" arm_dir= "left">
+    <origin xyz="0.0 0 0" rpy="0 0 -1.57"/>
+  </xacro:dlr_hit_2_left_hand>
+
+
+ <!-- gazebo plugin for ros control -->
+ <gazebo>
+   <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+     <robotNamespace>/darias</robotNamespace>
+   </plugin>
+ </gazebo>
+
+</robot>
+

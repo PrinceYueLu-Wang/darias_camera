@@ -1,0 +1,35 @@
+<launch>
+
+    <arg name="delay_time1" default="10.0" />
+    <arg name="delay_time2" default="15.0" />  
+
+    <param name="use_sim_time" value="true"/>
+
+    <node pkg="rosbag" type="play" name="rosbag" args="--clock -l /home/yifei/Desktop/visual/Nov29Pose1.bag"/>
+
+    <include file="$(find darias_description)/launch/darias_description.launch" />
+
+
+    <node name="tf_ADJUST" pkg="cam_cfg" type="tf_ADJUST" />
+    <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+
+    <group ns="RVIZ">
+
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find darias_intelcamera)/rviz_config/test1.rviz" />
+
+    </group>
+
+    <node pkg="tf" type="static_transform_publisher" name="camera_tf_1" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_color_optical_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="camera_tf_2" args="0 0 0 -0.5 0.5 -0.5 0.5 camera_link camera_depth_optical_frame 100" />
+
+
+    <node name="cam_img2pcdtree" pkg="darias_intelcamera" type="cam_img2pcdtree" />
+
+    <!-- need 10 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_meshes2pcd" pkg="darias_intelcamera" type="cam_meshes2pcd" launch-prefix="bash -c 'sleep $(arg delay_time1); $0 $@' "/>
+
+    <!-- need 15 second delay before this node start,  to avoid tf_listener maybe empty  -->
+    <node name="cam_pcd2map" pkg="darias_intelcamera" type="cam_pcd2map" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/>
+
+</launch>
