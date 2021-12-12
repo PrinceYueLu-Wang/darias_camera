@@ -168,21 +168,13 @@ add_executable(cam_img2pcdtree src/cam_img2pcdtree.cpp)
 target_link_libraries(cam_img2pcdtree ${catkin_LIBRARIES})
 add_dependencies(cam_img2pcdtree ${catkin_EXPORTED_TARGETS})
 
-add_executable(cam_img2pcdtree_2 src/cam_img2pcdtree_2.cpp)
-target_link_libraries(cam_img2pcdtree_2 ${catkin_LIBRARIES})
-add_dependencies(cam_img2pcdtree_2 ${catkin_EXPORTED_TARGETS})
+add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
+target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
+add_dependencies(cam_meshes2pcd ${catkin_EXPORTED_TARGETS})
 
 add_executable(cam_pcd2map src/cam_pcd2map.cpp)
 target_link_libraries(cam_pcd2map ${catkin_LIBRARIES})
 add_dependencies(cam_pcd2map ${catkin_EXPORTED_TARGETS})
-
-add_executable(cam_pcd2map_2 src/cam_pcd2map_2.cpp)
-target_link_libraries(cam_pcd2map_2 ${catkin_LIBRARIES})
-add_dependencies(cam_pcd2map_2 ${catkin_EXPORTED_TARGETS})
-
-add_executable(cam_meshes2pcd src/cam_meshes2pcd.cpp)
-target_link_libraries(cam_meshes2pcd ${catkin_LIBRARIES})
-add_dependencies(cam_meshes2pcd ${catkin_EXPORTED_TARGETS})
 
 add_executable(allInOne src/allInOne.cpp)
 target_link_libraries(allInOne ${catkin_LIBRARIES} ${Boost_LIBRARIES})

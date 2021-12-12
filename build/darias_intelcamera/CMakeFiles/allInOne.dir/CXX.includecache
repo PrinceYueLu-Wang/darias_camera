@@ -6,22 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/yifei/Desktop/visual/darias_camera/devel/include/darias_intelcamera/maplist.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
 /home/yifei/Desktop/visual/darias_camera/src/darias_intelcamera/include/darias_intelcamera/allInOne.hpp
 iostream
 -

@@ -183,21 +183,6 @@ allInOne/fast:
 .PHONY : allInOne/fast
 
 # Convenience name for target.
-darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule
-
-# Convenience name for target.
-cam_img2pcdtree_2: darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/rule
-
-.PHONY : cam_img2pcdtree_2
-
-# fast build rule for target.
-cam_img2pcdtree_2/fast:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build
-.PHONY : cam_img2pcdtree_2/fast
-
-# Convenience name for target.
 darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/rule:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/rule
 .PHONY : darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/rule
@@ -541,21 +526,6 @@ octomap_msgs_generate_messages_lisp: darias_intelcamera/CMakeFiles/octomap_msgs_
 octomap_msgs_generate_messages_lisp/fast:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build.make darias_intelcamera/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build
 .PHONY : octomap_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/rule:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f CMakeFiles/Makefile2 darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/rule
-.PHONY : darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/rule
-
-# Convenience name for target.
-cam_pcd2map_2: darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/rule
-
-.PHONY : cam_pcd2map_2
-
-# fast build rule for target.
-cam_pcd2map_2/fast:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build
-.PHONY : cam_pcd2map_2/fast
 
 # Convenience name for target.
 darias_intelcamera/CMakeFiles/tf_generate_messages_lisp.dir/rule:
@@ -1076,33 +1046,6 @@ src/cam_img2pcdtree.cpp.s:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree.dir/src/cam_img2pcdtree.cpp.s
 .PHONY : src/cam_img2pcdtree.cpp.s
 
-src/cam_img2pcdtree_2.o: src/cam_img2pcdtree_2.cpp.o
-
-.PHONY : src/cam_img2pcdtree_2.o
-
-# target to build an object file
-src/cam_img2pcdtree_2.cpp.o:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/src/cam_img2pcdtree_2.cpp.o
-.PHONY : src/cam_img2pcdtree_2.cpp.o
-
-src/cam_img2pcdtree_2.i: src/cam_img2pcdtree_2.cpp.i
-
-.PHONY : src/cam_img2pcdtree_2.i
-
-# target to preprocess a source file
-src/cam_img2pcdtree_2.cpp.i:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/src/cam_img2pcdtree_2.cpp.i
-.PHONY : src/cam_img2pcdtree_2.cpp.i
-
-src/cam_img2pcdtree_2.s: src/cam_img2pcdtree_2.cpp.s
-
-.PHONY : src/cam_img2pcdtree_2.s
-
-# target to generate assembly for a file
-src/cam_img2pcdtree_2.cpp.s:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/build.make darias_intelcamera/CMakeFiles/cam_img2pcdtree_2.dir/src/cam_img2pcdtree_2.cpp.s
-.PHONY : src/cam_img2pcdtree_2.cpp.s
-
 src/cam_meshes2pcd.o: src/cam_meshes2pcd.cpp.o
 
 .PHONY : src/cam_meshes2pcd.o
@@ -1157,33 +1100,6 @@ src/cam_pcd2map.cpp.s:
 	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map.dir/src/cam_pcd2map.cpp.s
 .PHONY : src/cam_pcd2map.cpp.s
 
-src/cam_pcd2map_2.o: src/cam_pcd2map_2.cpp.o
-
-.PHONY : src/cam_pcd2map_2.o
-
-# target to build an object file
-src/cam_pcd2map_2.cpp.o:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/src/cam_pcd2map_2.cpp.o
-.PHONY : src/cam_pcd2map_2.cpp.o
-
-src/cam_pcd2map_2.i: src/cam_pcd2map_2.cpp.i
-
-.PHONY : src/cam_pcd2map_2.i
-
-# target to preprocess a source file
-src/cam_pcd2map_2.cpp.i:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/src/cam_pcd2map_2.cpp.i
-.PHONY : src/cam_pcd2map_2.cpp.i
-
-src/cam_pcd2map_2.s: src/cam_pcd2map_2.cpp.s
-
-.PHONY : src/cam_pcd2map_2.s
-
-# target to generate assembly for a file
-src/cam_pcd2map_2.cpp.s:
-	cd /home/yifei/Desktop/visual/darias_camera/build && $(MAKE) -f darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/build.make darias_intelcamera/CMakeFiles/cam_pcd2map_2.dir/src/cam_pcd2map_2.cpp.s
-.PHONY : src/cam_pcd2map_2.cpp.s
-
 src/jointStates_publisher.o: src/jointStates_publisher.cpp.o
 
 .PHONY : src/jointStates_publisher.o
@@ -1222,7 +1138,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... allInOne"
-	@echo "... cam_img2pcdtree_2"
 	@echo "... cam_img2pcdtree"
 	@echo "... jointStates_publisher"
 	@echo "... darias_intelcamera_genpy"
@@ -1248,7 +1163,6 @@ help:
 	@echo "... tf_generate_messages_py"
 	@echo "... tf_generate_messages_nodejs"
 	@echo "... octomap_msgs_generate_messages_lisp"
-	@echo "... cam_pcd2map_2"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_cpp"
@@ -1287,18 +1201,12 @@ help:
 	@echo "... src/cam_img2pcdtree.o"
 	@echo "... src/cam_img2pcdtree.i"
 	@echo "... src/cam_img2pcdtree.s"
-	@echo "... src/cam_img2pcdtree_2.o"
-	@echo "... src/cam_img2pcdtree_2.i"
-	@echo "... src/cam_img2pcdtree_2.s"
 	@echo "... src/cam_meshes2pcd.o"
 	@echo "... src/cam_meshes2pcd.i"
 	@echo "... src/cam_meshes2pcd.s"
 	@echo "... src/cam_pcd2map.o"
 	@echo "... src/cam_pcd2map.i"
 	@echo "... src/cam_pcd2map.s"
-	@echo "... src/cam_pcd2map_2.o"
-	@echo "... src/cam_pcd2map_2.i"
-	@echo "... src/cam_pcd2map_2.s"
 	@echo "... src/jointStates_publisher.o"
 	@echo "... src/jointStates_publisher.i"
 	@echo "... src/jointStates_publisher.s"

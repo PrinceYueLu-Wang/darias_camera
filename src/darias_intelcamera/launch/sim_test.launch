@@ -7,12 +7,8 @@
 
     <node pkg="rosbag" type="play" name="rosbag" args="--clock -l /home/yifei/Desktop/visual/Nov29Pose1.bag"/>
 
-
-    <!-- <group ns="RobotModel"> -->
-
     <include file="$(find darias_description)/launch/darias_description.launch" />
 
-    <!-- <group ns="TF_adjust"> -->
 
     <node name="tf_ADJUST" pkg="cam_cfg" type="tf_ADJUST" />
     <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
@@ -35,6 +31,5 @@
 
     <!-- need 15 second delay before this node start,  to avoid tf_listener maybe empty  -->
     <node name="cam_pcd2map" pkg="darias_intelcamera" type="cam_pcd2map" launch-prefix="bash -c 'sleep $(arg delay_time2); $0 $@' "/>
-    <!-- launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " /> -->
 
 </launch>

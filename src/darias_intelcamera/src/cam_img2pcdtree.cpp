@@ -52,11 +52,11 @@ public:
         //tf listner
         tfListener_ = new tf2_ros::TransformListener(tfBuffer_);
 
-        pub_octomap = n_.advertise<octomap_msgs::Octomap>("/camera_visual/raw/octomap", 1);
+        // pub_octomap = n_.advertise<octomap_msgs::Octomap>("/camera_visual/raw/octomap", 1);
 
-        pub_octomap_points = n_.advertise<darias_intelcamera::maplist>("/camera_visual/raw/point_list", 1);
+        // pub_octomap_points = n_.advertise<darias_intelcamera::maplist>("/camera_visual/raw/point_list", 1);
 
-        pub_pcd = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/raw/pointcloud", 1);
+        // pub_pcd = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/raw/pointcloud", 1);
 
         pub_pcd_voxel = n_.advertise<sensor_msgs::PointCloud2>("/camera_visual/raw/pointcloud_voxel", 1);
 
@@ -67,8 +67,8 @@ public:
     {   
 
 
-        ros::WallTime start_, end_;
-        double execution_time;
+        // ros::WallTime start_, end_;
+        // double execution_time;
 
         // double execution_time = (end_ - start_).toNSec() * 1e-6;
 
@@ -92,6 +92,13 @@ public:
 
         geometry_msgs::TransformStamped tf_world2camera;
 
+        pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
+
+        voxel_grid.setInputCloud (pointcloud_raw);
+        voxel_grid.setLeafSize (0.02f, 0.02f, 0.02f);
+
+        pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_raw_voxel(new pcl::PointCloud<pcl::PointXYZ>);
+        voxel_grid.filter (*pointcloud_raw_voxel);
 
         try
         {   
@@ -103,96 +110,29 @@ public:
             pcl_ros::transformAsMatrix(tf_world2camera.transform, tf_eigen);
 
 
-            // pcd to world frame
-            start_ = ros::WallTime::now();
+            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_raw_world(new pcl::PointCloud<pcl::PointXYZ>);
 
-            pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_world(new pcl::PointCloud<pcl::PointXYZ>);
+            pcl::transformPointCloud(*pointcloud_raw_voxel, *pcd_voxel_raw_world, tf_eigen);
 
-            pcl::transformPointCloud(*pointcloud_raw, *pointcloud_world, tf_eigen);
+            
+            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_filtered_world(new pcl::PointCloud<pcl::PointXYZ>);
+            pcl::PassThrough<pcl::PointXYZ> passthrough;  //设置滤波器对象
+            passthrough.setInputCloud(pcd_voxel_raw_world);//输入点云
+            passthrough.setFilterFieldName("z");//对z轴进行操作，也可以对"x"和"y"轴进行操作    
+            passthrough.setFilterLimits(0.5, 3.0);//设置直通滤波器操作范围
+            passthrough.setFilterLimitsNegative(false);//true表示保留范围内，false表示保留范围外
+            passthrough.filter(*pcd_voxel_filtered_world);//执行滤波，过滤结果保存在 cloud_after_PassThrough
 
-            end_ = ros::WallTime::now();
-            execution_time = (end_ - start_).toNSec() * 1e-6;
-            ROS_INFO_STREAM("Exectution a time (ms): " << execution_time);
 
-            // pcd to pcdMsgs
 
             sensor_msgs::PointCloud2 pcdMsg;
 
-            pcl::toROSMsg(*pointcloud_world, pcdMsg);
+            pcl::toROSMsg(*pcd_voxel_filtered_world, pcdMsg);
 
             pcdMsg.header.frame_id = "world";
 
 
-            pub_pcd.publish(pcdMsg);
-
-
-            // grid Voxel
-
-            pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
-            voxel_grid.setInputCloud (pointcloud_world);
-            voxel_grid.setLeafSize (0.02f, 0.02f, 0.02f);
-
-            pcl::PointCloud<pcl::PointXYZ>::Ptr pointcloud_world_voxel(new pcl::PointCloud<pcl::PointXYZ>);
-            voxel_grid.filter (*pointcloud_world_voxel);
-
-            pcl::PointCloud<pcl::PointXYZ>::Ptr pcd_voxel_filtered(new pcl::PointCloud<pcl::PointXYZ>);
-            pcl::PassThrough<pcl::PointXYZ> passthrough;  //设置滤波器对象
-            passthrough.setInputCloud(pointcloud_world_voxel);//输入点云
-            passthrough.setFilterFieldName("z");//对z轴进行操作，也可以对"x"和"y"轴进行操作    
-            passthrough.setFilterLimits(0.5, 3.0);//设置直通滤波器操作范围
-            passthrough.setFilterLimitsNegative(false);//true表示保留范围内，false表示保留范围外
-            passthrough.filter(*pcd_voxel_filtered);//执行滤波，过滤结果保存在 cloud_after_PassThrough
-
-            sensor_msgs::PointCloud2 pcd_voxelMsg;
-            pcl::toROSMsg(*pcd_voxel_filtered, pcd_voxelMsg);
-            pcd_voxelMsg.header.frame_id = "world";
-
-
-            pub_pcd_voxel.publish(pcd_voxelMsg);
-
-            // generate an octree
-
-            // double octree_res = 0.01;
-            // octomap::OcTree tree(octree_res);
-
-            // for (auto p : pointcloud_world->points)
-            // {
-            //     // insert cloud points into octree
-            //     tree.updateNode(octomap::point3d(p.x, p.y, p.z), true);
-            // }
-
-            // tree.updateInnerOccupancy();
-
-            // //publish octree
-            
-            // octomap_msgs::Octomap octomapMsg;
-            // octomap_msgs::fullMapToMsg(tree, octomapMsg);
-            // octomapMsg.header.frame_id = "world";
-
-            // pub_octomap.publish(octomapMsg);
-
-            // // section to publish points xyz array
-
-            // int tree_depth = 15;
-
-            // darias_intelcamera::maplist pointsMsg;
-
-            // pointsMsg.sphere_radius = octree_res * pow(2.0, 16 - tree_depth);
-
-            // int cube_num = 0;
-
-            // for (auto iter = tree.begin(15), end = tree.end(); iter != end; ++iter)
-            // {
-            //     pointsMsg.center_x.push_back(iter.getX());
-            //     pointsMsg.center_y.push_back(iter.getY());
-            //     pointsMsg.center_z.push_back(iter.getZ());
-
-            //     ++cube_num;
-            // }
-
-            // pointsMsg.cube_number = cube_num;
-            // pub_octomap_points.publish(pointsMsg);
-
+            pub_pcd_voxel.publish(pcdMsg);
 
         }
         catch (tf2::TransformException &ex)
@@ -204,8 +144,8 @@ public:
 private:
     ros::NodeHandle n_;
 
-    ros::Publisher pub_octomap;
-    ros::Publisher pub_octomap_points;
+    // ros::Publisher pub_octomap;
+    // ros::Publisher pub_octomap_points;
 
     ros::Publisher pub_pcd_voxel;
     ros::Publisher pub_pcd;
